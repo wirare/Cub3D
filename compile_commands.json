@@ -1,0 +1,21 @@
+[
+ {
+  "directory": "/nfs/homes/ellanglo/Project/ft_electrotech",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-g",
+   "-I",
+   "headers",
+   "-I",
+   "lib/MacroLibX/includes",
+   "-c",
+   "srcs/main.c",
+   "-o",
+   ".objs/main.o"
+  ],
+  "file": "srcs/main.c"
+ }
+]

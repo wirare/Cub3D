@@ -10,7 +10,7 @@ DIR_MLX         := $(DIR_LIB)/MacroLibX
 MLX_INCLUDES    := $(DIR_MLX)/includes
 MLX             := $(DIR_MLX)/libmlx.so
 
-OBJS            := $(addprefix $(DIR_OBJS)/, $(name_SOURCES:%.c=%.o))
+OBJS            := $(addprefix $(DIR_OBJS)/, $(CUB3D_SOURCES:%.c=%.o))
 
 CC              := cc
 OPT_FLAGS	    := -O3 -mavx2 -mfma -march=native -mtune=native -funroll-loops -fvectorize -ffp-contract=fast  -freciprocal-math -ffast-math -fstrict-aliasing  -fomit-frame-pointer -flto=full -mprefer-vector-width=256
@@ -47,4 +47,9 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean re all
+rebuild:
+	@rm -rf $(DIR_OBJS)
+	@rm -f $(NAME)
+	@$(MAKE) all
+
+.PHONY: clean fclean re all rebuild

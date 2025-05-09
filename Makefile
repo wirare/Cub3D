@@ -10,6 +10,10 @@ DIR_MLX         := $(DIR_LIB)/MacroLibX
 MLX_INCLUDES    := $(DIR_MLX)/includes
 MLX             := $(DIR_MLX)/libmlx.so
 
+DIR_LIBFT		:= $(DIR_LIB)/libft
+LIBFT_INCLUDES	:= $(DIR_LIBFT)/headers
+LIBFT			:= $(DIR_LIBFT)/libft.a
+
 OBJS            := $(addprefix $(DIR_OBJS)/, $(CUB3D_SOURCES:%.c=%.o))
 
 CC              := cc
@@ -25,12 +29,15 @@ DIR_DUP          = mkdir -p $(@D)
 
 all: $(NAME)
 
-$(NAME): $(MLX) $(OBJS)
-	@$(CC) $(CFLAGS) $(IFLAGS) -lm -lSDL2 $(OBJS) -o $(NAME) $(MLX) 
+$(NAME): $(MLX) $(LIBFT) $(OBJS)
+	@$(CC) $(CFLAGS) $(IFLAGS) -lm -lSDL2 $(OBJS) -o $(NAME) $(MLX) $(LIBFT)
 	@printf "$(GREEN)$(NAME) compiled$(END)\n"
 
 $(MLX):
 	$(MAKE) -C $(DIR_MLX) --no-print-directory -j
+
+$(LIBFT):
+	$(MAKE) -C $(DIR_LIBFT) --no-print-directory -j
 
 $(DIR_OBJS)/%.o: $(DIR_SOURCES)/%.c
 	@$(DIR_DUP)
@@ -43,6 +50,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	$(MAKE) -C $(DIR_MLX) fclean
+	$(MAKE) -C $(DIR_LIBFT) fclean
 	@printf "$(RED)$(NAME) removed$(END)\n"
 
 re: fclean all

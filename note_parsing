@@ -1,0 +1,20 @@
+caractere pour la map :
+0 = partie de la map pas de texture
+1 = mur de la map
+N, S, O, E = emplacement de depart avec la direction vers lequel le joueur est tournee au debut de la partie 
+
+la carte doit etre ferme et entouree de mur sinon erreur
+les element doivent tous etre declare dans n'importe quelle ordre, sauf la carte qui doit etre le dernier element declare
+tous les elements a l'exeception de la carte peuvent etre separe par un ou plusieurs saut a la ligne
+tous les elements a l'exeception de la carte peuvent etre separe par un ou plusieurs espace
+
+pour les texture :
+
+On declare un testure avec NO/SO/WE/EA ./path_to_the_texture
+
+Pour le sol on declare avec F R,G,B puis un numero entre 0 et 255
+Pour le plafons on declare avec C puis un numero entre 0 et 255
+
+les retour d'erreur c'est "Error\n"
+
+fonction utile : une nouveaux gnl, open, close, read, malloc, 

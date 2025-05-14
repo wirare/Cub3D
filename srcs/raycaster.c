@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:00:27 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/05/02 18:03:40 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/05/14 10:13:42 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
@@ -14,7 +14,7 @@
 void	update_timing(t_timing *timing)
 {
 	timing->old_time = timing->time;
-	timing->time = get_ms();
+//	timing->time = get_ms();
 	timing->delta_time = (timing->time - timing->old_time) / 1000.0;
 	//printf("Delta time: %f\n", 1/timing->delta_time);
 }

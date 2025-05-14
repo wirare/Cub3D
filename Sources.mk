@@ -6,3 +6,5 @@ CUB3D_SOURCES := main.c \
 				 display/display.c \
 				 init.c \
 				 raycaster.c \
+				 parsing/check_file_name.c \
+				 parsing/error/print_error.c \

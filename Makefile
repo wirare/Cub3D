@@ -19,7 +19,7 @@ OBJS            := $(addprefix $(DIR_OBJS)/, $(CUB3D_SOURCES:%.c=%.o))
 CC              := cc
 OPT_FLAGS	    := -O3 -mavx2 -mfma -march=native -mtune=native -funroll-loops -fvectorize -ffp-contract=fast  -freciprocal-math -ffast-math -fstrict-aliasing  -fomit-frame-pointer -flto=full -mprefer-vector-width=256
 CFLAGS          := -Wall -Wextra -Werror -g #$(OPT_FLAGS)
-IFLAGS          := -I $(DIR_HEADERS) -I $(MLX_INCLUDES)
+IFLAGS          := -I $(DIR_HEADERS) -I $(MLX_INCLUDES) -I $(LIBFT_INCLUDES)
 
 GREEN            = \033[0;32m
 RED              = \033[0;31m

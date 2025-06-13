@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:55:55 by jodougla          #+#    #+#             */
-/*   Updated: 2025/02/06 16:02:32 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/05/15 12:06:58 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef GNL_H
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1000
 # endif
 
 char	*get_next_line(int fd);

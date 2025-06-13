@@ -1,0 +1,4 @@
+NO ./textures/northdsdsa.png
+SO ./textures/south.png
+WE ./textures/east.png
+EA ./textures/west.png

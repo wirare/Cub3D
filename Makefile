@@ -31,6 +31,7 @@ all: $(NAME)
 
 $(NAME): $(MLX) $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) $(IFLAGS) -lm -lSDL2 $(OBJS) -o $(NAME) $(MLX) $(LIBFT)
+	@clear
 	@printf "$(GREEN)$(NAME) compiled$(END)\n"
 
 $(MLX):

@@ -7,4 +7,5 @@ CUB3D_SOURCES := main.c \
 				 init.c \
 				 raycaster.c \
 				 parsing/check_file_name.c \
-				 parsing/error/print_error.c \
+				 parsing/parse_texture.c \
+				 parsing/parse_file.c \

@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:05:22 by jodougla          #+#    #+#             */
-/*   Updated: 2025/06/13 14:20:40 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:58:12 by joshua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -27,33 +27,86 @@ bool	check_component(char *component, char *line)
 	return (0);
 }
 
-void	parse_file(t_parsing *parsing)
+char	*skip_space(char *line)
 {
-	int	i;
+	int	i = 0;
+
+	while (ft_isspace(line[i]))
+		i++;
+	return (line + i);
+}
+
+int	check_element_map(t_parsing *parsing, int i, int j)
+{
+	return (*parsing->file && parsing->file[i][j] != FLOOR
+		&& parsing->file[i][j] != WALL && parsing->file[i][j] != DOOR
+		&& !ft_isspace(parsing->file[i][j]));
+}
+
+int	check_parsing_end(t_parsing *parsing, int i)
+{
 	int	j;
 
+	while (parsing->file[i++])
+	{
+		j = -1;
+		while (parsing->file[i][++j])
+		{
+			if (check_element_map(parsing, i, j))
+			{
+				ft_printf("line = %s", parsing->file[i]);
+				ft_printf("Unknow type for the map\n");
+				return (1);
+			}
+			if (*parsing->file && (parsing->file[i][j] == FLOOR
+				|| parsing->file[i][j] == WALL || parsing->file[i][j] == NORTH
+				|| parsing->file[i][j] == SOUTH || parsing->file[i][j] == WEST
+				|| parsing->file[i][j] ==  EAST || parsing->file[i][j] == DOOR))
+			{
+				parsing->file += i - 1;
+				return (0);
+			}
+		}
+	}
+	return (0);
+}
+
+int	check_type(t_parsing *parsing, int *ret, int i)
+{
+	if (check_component(NORTH_TEXTURE, parsing->file[i]))
+		*ret = parse_texture("NO", parsing, parsing->file[i] + 2);
+	else if (check_component(SOUTH_TEXTURE, parsing->file[i]))
+		*ret = parse_texture("SO", parsing, parsing->file[i] + 2);
+	else if (check_component(EAST_TEXTURE, parsing->file[i]))
+		*ret = parse_texture("EA", parsing, parsing->file[i] + 2);
+	else if (check_component(WEST_TEXTURE, parsing->file[i]))
+		*ret = parse_texture("WE", parsing, parsing->file[i] + 2);
+	else if (check_component(FLOOR_COLOR, parsing->file[i]))
+		*ret = parse_color(parsing, parsing->file[i] + 1, 'F');
+	else if (check_component(CELLING_COLOR, parsing->file[i]))
+		*ret = parse_color(parsing, parsing->file[i] + 1, 'C');
+	else if(!*parsing->file[i])
+		return (0);
+	else
+		return (1);
+	return (*ret);
+}
+
+int	parse_file(t_parsing *parsing)
+{
+	int	ret;
+	int	i;
+
+	ret = 0;
 	i = 0;
 	while (parsing->file[i])
 	{
-		j = 0;
-		while (ft_isspace(parsing->file[i][j]))
-			j++;
-		if (check_component(NORTH_TEXTURE, parsing->file[i] + j))
-			parse_texture("NO", parsing, parsing->file[i] + j + 2);
-		else if (check_component(SOUTH_TEXTURE, parsing->file[i] + j))
-			parse_texture("SO", parsing, parsing->file[i] + j + 2);
-		else if (check_component(EAST_TEXTURE, parsing->file[i] + j))
-			parse_texture("EA", parsing, parsing->file[i] + j + 2);
-		else if (check_component(WEST_TEXTURE, parsing->file[i] + j))
-			parse_texture("WE", parsing, parsing->file[i] + j + 2);
-		else if (check_component(FLOOR_COLOR, parsing->file[i] + j))
-		{
-
-		}
-		else if (check_component(CELLING_COLOR, parsing->file[i] + j))
-		{
-
-		}
+		parsing->file[i] = skip_space(parsing->file[i]);
+		if (check_type(parsing, &ret, i) == 1)
+			break ;
 		i++;
 	}
+	if (ret == 0)
+		return (check_parsing_end(parsing, i));
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:28:55 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/06/13 13:37:22 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:37:53 by joshua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -17,15 +17,24 @@ void	set_parsing(t_parsing *parsing)
 	parsing->so.path = NULL;
 	parsing->ea.path = NULL;
 	parsing->we.path = NULL;
+	parsing->floor = NULL;
+	parsing->celling = NULL;
 }
 
 void	free_parsing(t_parsing parsing)
 {
-	ft_free(parsing.file);
-	free(parsing.no.path);
-	free(parsing.so.path);
-	free(parsing.ea.path);
-	free(parsing.we.path);
+	if (parsing.no.path)
+		free(parsing.no.path);
+	if (parsing.so.path)
+		free(parsing.so.path);
+	if (parsing.ea.path)
+		free(parsing.ea.path);
+	if (parsing.we.path)
+		free(parsing.we.path);
+	if (parsing.floor)
+		free(parsing.floor);
+	if (parsing.celling)
+		free(parsing.celling);
 }
 
 int	main(int argc, char **argv)
@@ -40,6 +49,12 @@ exemple :./Cub3d path_to_the_map\n");
 	}
 	set_parsing(&parsing);
 	check_file_name(argv[1], &parsing);
-	parse_file(&parsing);
+	if (parse_file(&parsing) == 0)
+	{
+		parsing.map = parsing.file;
+		parsing.map = parsing.file;
+		if (parse_map(parsing) == 0)
+			prep_flood_fill(parsing.map);
+	}
 	free_parsing(parsing);
 }

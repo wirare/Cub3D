@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:05:22 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 19:15:07 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:48:23 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_type.h"
@@ -54,7 +54,7 @@ int	check_parsing_end(t_parsing *parsing, int i)
 				|| parsing->file[i][j] == SOUTH || parsing->file[i][j] == WEST
 				|| parsing->file[i][j] == EAST || parsing->file[i][j] == DOOR))
 			{
-				parsing->file += i - 1;
+				parsing->file += i;
 				return (0);
 			}
 		}

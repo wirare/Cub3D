@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:28:55 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/01 19:15:21 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:45:38 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -54,7 +54,6 @@ exemple :./Cub3d path_to_the_map\n");
 		parsing.map = parsing.file;
 		if (parse_map(parsing) == 0)
 		{
-
 			prep_flood_fill(parsing.map);
 		}
 	}

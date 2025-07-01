@@ -6,14 +6,14 @@
 /*   By: joshua <joshua@42angouleme.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:53:03 by joshua            #+#    #+#             */
-/*   Updated: 2025/06/28 19:24:45 by joshua           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:12:23 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
 
 void	set_celling(t_parsing *parsing, int r, int g, int b)
 {
-	parsing->celling = malloc (sizeof(t_color));	
+	parsing->celling = malloc (sizeof(t_color));
 	parsing->celling->r = r;
 	parsing->celling->g = g;
 	parsing->celling->b = b;
@@ -21,11 +21,10 @@ void	set_celling(t_parsing *parsing, int r, int g, int b)
 
 void	set_floor(t_parsing *parsing, int r, int g, int b)
 {
-	parsing->floor = malloc (sizeof(t_color));	
+	parsing->floor = malloc (sizeof(t_color));
 	parsing->floor->r = r;
 	parsing->floor->g = g;
 	parsing->floor->b = b;
-
 }
 
 int	parse_one_color(char **line, int *color)
@@ -68,7 +67,7 @@ int	get_collor(char *line, int *r, int *g, int *b)
 	return (0);
 }
 
-int parse_color(t_parsing *parsing, char *line, char type)
+int	parse_color(t_parsing *parsing, char *line, char type)
 {
 	int	r;
 	int	g;

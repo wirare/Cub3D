@@ -6,15 +6,29 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:16:10 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 09:36:41 by joshua           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:44:32 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
 
+void	loop_file(char *line, t_parsing *parsing, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		parsing->file[i] = line;
+		push(parsing->file[i++]);
+		if (line == NULL)
+			break ;
+	}
+}
+
 void	get_file(char *file_name, t_parsing *parsing, int fd)
 {
 	int		size;
-	int		i;
 	char	*line;
 
 	size = 0;
@@ -30,16 +44,7 @@ void	get_file(char *file_name, t_parsing *parsing, int fd)
 	push(parsing->file);
 	close(fd);
 	fd = open(file_name, O_RDONLY);
-	i = 0;
-	while (1)
-	{
-		line = get_next_line(fd);
-		parsing->file[i] = line;
-		push(parsing->file[i++]);
-		if (line == NULL)
-			break ;
-	}
-	close(fd);
+	loop_file(line, parsing, fd);
 }
 
 void	print(char *file_name)
@@ -88,4 +93,5 @@ missing the \".cub\" extension\n%s", RED, RESET);
 		exit (5);
 	}
 	get_file(file_name, parsing, fd);
+	close(fd);
 }

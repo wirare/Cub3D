@@ -6,7 +6,7 @@
 /*   By: joshua <joshua@42angouleme.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:30:42 by joshua            #+#    #+#             */
-/*   Updated: 2025/07/01 13:21:39 by joshua           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:15:23 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -33,7 +33,7 @@ int	check_map_caracter(char **map, char *str)
 			{
 				ft_printf("There is an invalid caracter in the map\n");
 				return (1);
-			}	
+			}
 		}
 	}
 	return (0);
@@ -74,9 +74,9 @@ int	check_empty_line(char **map)
 	while (map[++i])
 	{
 		j = -1;
-		while(map[i][++j])
+		while (map[i][++j])
 		{
-			if (map[i][j] == '\n' && map[i + 1] && map[i+1][0] == '\n')
+			if (map[i][j] == '\n' && map[i + 1] && map[i + 1][0] == '\n')
 			{
 				ft_printf("There is an empty line in the map\n");
 				return (1);

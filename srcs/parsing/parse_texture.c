@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:33:16 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 00:01:22 by joshua           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:16:10 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -15,15 +15,19 @@ int	select_texture(char *texture_to_parse, char *line, t_parsing *parsing)
 {
 	if (ft_strncmp(texture_to_parse, "NO", 3) == 0 && parsing->no.path == NULL)
 		parsing->no.path = ft_strdup(line);
-	else if (ft_strncmp(texture_to_parse, "SO", 3) == 0 && parsing->so.path == NULL)
+	else if (ft_strncmp(texture_to_parse, "SO", 3) == 0
+		&& parsing->so.path == NULL)
 		parsing->so.path = ft_strdup(line);
-	else if (ft_strncmp(texture_to_parse, "EA", 3) == 0 && parsing->ea.path == NULL)
+	else if (ft_strncmp(texture_to_parse, "EA", 3) == 0
+		&& parsing->ea.path == NULL)
 		parsing->ea.path = ft_strdup(line);
-	else if (ft_strncmp(texture_to_parse, "WE", 3) == 0 && parsing->we.path == NULL)
+	else if (ft_strncmp(texture_to_parse, "WE", 3) == 0
+		&& parsing->we.path == NULL)
 		parsing->we.path = ft_strdup(line);
 	else
 	{
-		ft_printf("This texture is set multiple times : %s\n", texture_to_parse);
+		ft_printf("This texture is set multiple \
+times : %s\n", texture_to_parse);
 		return (1);
 	}
 	return (0);

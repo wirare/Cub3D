@@ -11,4 +11,5 @@ CUB3D_SOURCES := main.c \
 				 parsing/parse_file.c \
 				 parsing/parse_color.c \
 				 parsing/parse_map.c \
-				 parsing/flood_fill.c
+				 parsing/flood_fill.c \
+				 parsing/parsing_utils.c \

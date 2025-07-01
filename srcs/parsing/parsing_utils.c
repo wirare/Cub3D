@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:16:52 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 14:38:51 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:45:37 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -19,26 +19,6 @@ char	*skip_space(char *line)
 	while (ft_isspace(line[i]))
 		i++;
 	return (line + i);
-}
-
-void	flood_fill_init(t_flood_fill *flood_fill)
-{
-	flood_fill->i = 0;
-	flood_fill->num_rec = 0;
-	flood_fill->max_stack_reached = 0;
-	flood_fill->x = -1;
-	flood_fill->y = -1;
-	flood_fill->error = 0;
-}
-
-int	ft_str_arr_len(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (*(arr + i) != NULL)
-		i++;
-	return (i);
 }
 
 void	get_player_pos(char **map, int *player_x, int *player_y)

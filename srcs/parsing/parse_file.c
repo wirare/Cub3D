@@ -6,9 +6,10 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:05:22 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 14:34:45 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:15:07 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_type.h"
 #include <parsing.h>
 
 bool	check_component(char *component, char *line)
@@ -37,8 +38,7 @@ int	check_element_map(t_parsing *parsing, int i, int j)
 int	check_parsing_end(t_parsing *parsing, int i)
 {
 	int	j;
-
-	while (parsing->file[i++])
+	while (parsing->file[i])
 	{
 		j = -1;
 		while (parsing->file[i][++j])
@@ -58,25 +58,26 @@ int	check_parsing_end(t_parsing *parsing, int i)
 				return (0);
 			}
 		}
+		i++;
 	}
 	return (0);
 }
 
-int	check_type(t_parsing *parsing, int *ret, int i)
+int	check_type(t_parsing *parsing, int *ret, int i, int j)
 {
-	if (check_component(NORTH_TEXTURE, parsing->file[i]))
-		*ret = parse_texture("NO", parsing, parsing->file[i] + 2);
-	else if (check_component(SOUTH_TEXTURE, parsing->file[i]))
-		*ret = parse_texture("SO", parsing, parsing->file[i] + 2);
-	else if (check_component(EAST_TEXTURE, parsing->file[i]))
-		*ret = parse_texture("EA", parsing, parsing->file[i] + 2);
-	else if (check_component(WEST_TEXTURE, parsing->file[i]))
-		*ret = parse_texture("WE", parsing, parsing->file[i] + 2);
-	else if (check_component(FLOOR_COLOR, parsing->file[i]))
-		*ret = parse_color(parsing, parsing->file[i] + 1, 'F');
-	else if (check_component(CELLING_COLOR, parsing->file[i]))
-		*ret = parse_color(parsing, parsing->file[i] + 1, 'C');
-	else if (!*parsing->file[i])
+	if (check_component(NORTH_TEXTURE, parsing->file[i] + j))
+		*ret = parse_texture("NO", parsing, parsing->file[i] + j + 2);
+	else if (check_component(SOUTH_TEXTURE, parsing->file[i] + j))
+		*ret = parse_texture("SO", parsing, parsing->file[i] + j + 2);
+	else if (check_component(EAST_TEXTURE, parsing->file[i] + j))
+		*ret = parse_texture("EA", parsing, parsing->file[i] + j + 2);
+	else if (check_component(WEST_TEXTURE, parsing->file[i] + j))
+		*ret = parse_texture("WE", parsing, parsing->file[i] + j + 2);
+	else if (check_component(FLOOR_COLOR, parsing->file[i] + j))
+		*ret = parse_color(parsing, parsing->file[i] + j + 1, 'F');
+	else if (check_component(CELLING_COLOR, parsing->file[i] + j))
+		*ret = parse_color(parsing, parsing->file[i] + j + 1, 'C');
+	else if (!*parsing->file[i] + j)
 		return (0);
 	else
 		return (1);
@@ -87,13 +88,16 @@ int	parse_file(t_parsing *parsing)
 {
 	int	ret;
 	int	i;
+	int	j;
 
 	ret = 0;
 	i = 0;
 	while (parsing->file[i])
 	{
-		parsing->file[i] = skip_space(parsing->file[i]);
-		if (check_type(parsing, &ret, i) == 1)
+		j = 0;
+		while (ft_isspace(parsing->file[i][j]))
+			j++;
+		if (check_type(parsing, &ret, i, j) == 1)
 			break ;
 		i++;
 	}

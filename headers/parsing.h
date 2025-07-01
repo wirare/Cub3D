@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:57:07 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 14:38:42 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:45:49 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PARSING_H
@@ -36,16 +36,6 @@
 # define EAST_TEXTURE "EA"
 # define FLOOR_COLOR "F"
 # define CELLING_COLOR "C"
-
-typedef struct s_flood_fill
-{
-	int		i;
-	int		num_rec;
-	int		max_stack_reached;
-	int		x;
-	int		y;
-	int		error;
-}	t_flood_fill;
 
 typedef struct s_color
 {
@@ -85,7 +75,7 @@ char	*skip_space(char *line);
 int		parse_map(t_parsing parsing);
 int		prep_flood_fill(char **map);
 int		ft_str_arr_len(char **arr);
-void	flood_fill_init(t_flood_fill *flood_fill);
 void	get_player_pos(char **map, int *player_x, int *player_y);
+bool validate_map_closed(char **original_map);
 
 #endif

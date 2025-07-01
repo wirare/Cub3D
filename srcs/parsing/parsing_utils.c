@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:16:52 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 18:45:37 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/01 22:59:53 by joshua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -42,3 +42,20 @@ void	get_player_pos(char **map, int *player_x, int *player_y)
 		}
 	}
 }
+
+int	array_len(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+/*void	init_pad_map(int *i, int *max_len, char **map, char ***copy)
+{
+	*i = 0;
+	*max_len = found_longest_line(map);
+	*copy = malloc((array_len(map)) * sizeof(char *));
+}*/

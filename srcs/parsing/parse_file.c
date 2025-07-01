@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:05:22 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 19:48:23 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/01 21:53:06 by joshua           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_type.h"
@@ -38,6 +38,7 @@ int	check_element_map(t_parsing *parsing, int i, int j)
 int	check_parsing_end(t_parsing *parsing, int i)
 {
 	int	j;
+
 	while (parsing->file[i])
 	{
 		j = -1;

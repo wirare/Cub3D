@@ -21,7 +21,7 @@ DEBUG_FLAG		:= -g -DSLOW
 GPROF			:= -pg
 OPT_FLAGS	    := -O3 -mfma -march=native -mtune=native -funroll-loops -fvectorize -ffp-contract=fast  -freciprocal-math -ffast-math -fstrict-aliasing -flto=full -mprefer-vector-width=256 -fomit-frame-pointer
 CFLAGS          := -Wall -Wextra -Werror -mavx2 #$(OPT_FLAGS)
-IFLAGS          := -I $(DIR_HEADERS) -I $(MLX_INCLUDES)
+IFLAGS          := -I $(DIR_HEADERS) -I $(MLX_INCLUDES) -I $(LIBFT_INCLUDES)
 
 PURPLE			 = \033[0:35m
 GREEN            = \033[0;32m

@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:16:10 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 14:44:32 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:42:42 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -51,18 +51,17 @@ void	print(char *file_name)
 {
 	if (errno == EACCES)
 	{
-		ft_printf("%sCub3D :%s :No permission \
-for this file\n%s", RED, file_name, RESET);
+		ft_printf("Cub3D :%s :No permission for this file\n", file_name);
 		exit (1);
 	}
 	else if (errno == ENOENT)
 	{
-		ft_printf("%sCub3D :%s :No such a file\n%s", RED, file_name, RESET);
+		ft_printf("Cub3D :%s :No such a file\n", file_name);
 		exit (2);
 	}
 	else
 	{
-		ft_printf("%sCub3D :Open failed\n%s", RED, RESET);
+		ft_printf("Cub3D :Open failed\n");
 		exit (3);
 	}
 }
@@ -82,14 +81,13 @@ void	check_file_name(char *file_name, t_parsing *parsing)
 	{
 		close(check_dir);
 		close(fd);
-		ft_printf("%sCub3D :%s is a directory\n%s", RED, file_name, RESET);
+		ft_printf("Cub3D :%s is a directory\n", file_name);
 		exit (4);
 	}
 	if (ft_strncmp(file_name + (len_name - 4), ".cub", 5) != 0)
 	{
 		close(fd);
-		ft_printf("%sCub3D :this file is \
-missing the \".cub\" extension\n%s", RED, RESET);
+		ft_printf("Cub3D :this file is missing the \".cub\" extension\n");
 		exit (5);
 	}
 	get_file(file_name, parsing, fd);

@@ -6,7 +6,7 @@
 /*   By: joshua <joshua@42angouleme.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:30:42 by joshua            #+#    #+#             */
-/*   Updated: 2025/07/01 19:46:30 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/02 12:04:13 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -114,8 +114,6 @@ int	parse_map(t_parsing parsing)
 	if (check_map_caracter(parsing.map, " \n10DNSWE"))
 		return (1);
 	if (check_empty_line(parsing.map))
-		return (1);
-	if (check_separate_map(parsing.map))
 		return (1);
 	return (0);
 }

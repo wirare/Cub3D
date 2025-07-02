@@ -1,4 +1,5 @@
 CUB3D_SOURCES := main.c \
+				 main_utils.c \
 				 app/manage_app.c \
 				 app/hooks.c \
 				 vector/vector.c \

@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:57:07 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/02 11:57:56 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:40:55 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PARSING_H
@@ -17,9 +17,7 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <mlx.h>
-
-# define RESET "\033[0m"
-# define RED "\033[31m"
+# include <app.h>
 
 # define WALL '1'
 # define FLOOR '0'
@@ -75,5 +73,11 @@ char	*skip_space(char *line);
 int		parse_map(t_parsing parsing);
 int		prep_floodfill(char **map);
 int		max_line_len(char **map);
+int		print_error(char *msg, int ret);
+int		len_array(char **str);
+void	set_texture(t_parsing *parsing, t_app app);
+void	check_argc(int argc);
+void	free_parsing(t_parsing parsing);
+void	set_parsing(t_parsing *parsing);
 
 #endif

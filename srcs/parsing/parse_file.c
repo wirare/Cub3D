@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:05:22 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 21:53:06 by joshua           ###   ########.fr       */
+/*   Updated: 2025/07/02 16:54:08 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_type.h"
@@ -46,7 +46,6 @@ int	check_parsing_end(t_parsing *parsing, int i)
 		{
 			if (check_element_map(parsing, i, j))
 			{
-				ft_printf("line = %s", parsing->file[i]);
 				ft_printf("Unknow type for the map\n");
 				return (1);
 			}
@@ -74,7 +73,7 @@ int	check_type(t_parsing *parsing, int *ret, int i, int j)
 		*ret = parse_texture("EA", parsing, parsing->file[i] + j + 2);
 	else if (check_component(WEST_TEXTURE, parsing->file[i] + j))
 		*ret = parse_texture("WE", parsing, parsing->file[i] + j + 2);
-	else if (check_component(FLOOR_COLOR, parsing->file[i] + j))
+	else if (check_component(FLOOR_COLOR, parsing->file[i] + -j))
 		*ret = parse_color(parsing, parsing->file[i] + j + 1, 'F');
 	else if (check_component(CELLING_COLOR, parsing->file[i] + j))
 		*ret = parse_color(parsing, parsing->file[i] + j + 1, 'C');
@@ -95,6 +94,12 @@ int	parse_file(t_parsing *parsing)
 	i = 0;
 	while (parsing->file[i])
 	{
+		if (*parsing->file[i] == '\0' || *parsing->file[i] == '\n'
+			|| ft_strlen(parsing->file[i]) == 0)
+		{
+			i++;
+			continue ;
+		}
 		j = 0;
 		while (ft_isspace(parsing->file[i][j]))
 			j++;

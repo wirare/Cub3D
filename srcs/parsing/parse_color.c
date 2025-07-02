@@ -6,9 +6,10 @@
 /*   By: joshua <joshua@42angouleme.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:53:03 by joshua            #+#    #+#             */
-/*   Updated: 2025/07/01 14:12:23 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:14:27 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "ft_type.h"
 #include <parsing.h>
 
 void	set_celling(t_parsing *parsing, int r, int g, int b)
@@ -27,11 +28,12 @@ void	set_floor(t_parsing *parsing, int r, int g, int b)
 	parsing->floor->b = b;
 }
 
-int	parse_one_color(char **line, int *color)
+int	parse_one_color(char **line, int *color, int *ret)
 {
 	if (!ft_isdigit(**line))
 	{
 		ft_printf("One or more invalid caracter in a color componenet\n");
+		*ret = 1;
 		return (1);
 	}
 	*color = ft_atoi(*line);
@@ -43,25 +45,27 @@ int	parse_one_color(char **line, int *color)
 
 int	get_collor(char *line, int *r, int *g, int *b)
 {
-	if (parse_one_color(&line, r) != 0 || *line != ',')
-		return (1);
+	int	ret;
+
+	ret = 0;
+	if (parse_one_color(&line, r, &ret) || *line != ',')
+		return (print_error("Error in one of the color component", ret));
 	line++;
 	line = skip_space(line);
-	if (parse_one_color(&line, g) || *line != ',')
-		return (1);
+	if (parse_one_color(&line, g, &ret) || *line != ',')
+		return (print_error("Error in one of the color component", ret));
 	line++;
 	line = skip_space(line);
-	if (parse_one_color(&line, b))
-		return (1);
-	line = skip_space(line);
-	if (*line != '\0' && *line != '\n')
+	if (parse_one_color(&line, b, &ret))
+		return (print_error("Error in one of the color component", ret));
+	if (*line != '\n' && *line != '\0')
 	{
-		ft_printf("One or more invalid caracter in a color componenet\n");
+		ft_printf("Invalid caracter in one of the color component\n");
 		return (1);
 	}
 	if (*r < 0 || *r > 255 || *g < 0 || *g > 255 || *b < 0 || *b > 255)
 	{
-		ft_printf("one of the color is not between 0 and 255\n");
+		ft_printf("one of the rgb component is not bet ween 0 and 255\n");
 		return (1);
 	}
 	return (0);

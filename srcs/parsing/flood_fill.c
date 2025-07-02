@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:28:29 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/02 11:54:25 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:17:55 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -58,12 +58,12 @@ int	check_point(char **map, int x, int y, int size[2])
 		{
 			if (x + co_x[co] < 0 || y + co_y[co] < 0
 				|| x + co_x[co] >= width || y + co_y[co] >= heigth)
-				return (0);
+				return (1);
 			if (map[y + co_y[co]][x + co_x[co]] == ' ')
-				return (0);
+				return (1);
 		}
 	}
-	return (1);
+	return (0);
 }
 
 int	check_closed(char **map, int heigth, int width)
@@ -80,11 +80,11 @@ int	check_closed(char **map, int heigth, int width)
 		x = -1;
 		while (++x < width)
 		{
-			if (check_point(map, x, y, size) == 0)
-				return (0);
+			if (check_point(map, x, y, size) == 1)
+				return (1);
 		}
 	}
-	return (1);
+	return (0);
 }
 
 int	prep_floodfill(char **map)
@@ -100,7 +100,7 @@ int	prep_floodfill(char **map)
 	while (map[heigth])
 		heigth++;
 	pad = pad_map(map, heigth, width);
-	if (!check_closed(pad, heigth, width))
+	if (check_closed(pad, heigth, width) == 1)
 	{
 		ft_printf("Map not closed\n");
 		while (pad[++i])

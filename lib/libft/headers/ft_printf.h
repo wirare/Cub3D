@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 15:53:07 by jodougla          #+#    #+#             */
-/*   Updated: 2025/02/06 15:54:02 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:53:35 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_PRINTF_H
@@ -17,7 +17,7 @@
 
 # define HEXA_UPPER "0123456789ABCDEF"
 # define HEXA_LOWER "0123456789abcdef"
-# define INT_MIN "-2147483648"
+# define INT_MIN_ "-2147483648"
 
 int		ft_printf(const char *str, ...) __attribute__((format(printf, 1, 2)));
 int		ft_putchar(int c);

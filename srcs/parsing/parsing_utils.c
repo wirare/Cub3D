@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:16:52 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/02 11:43:03 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:04:38 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -38,4 +38,21 @@ int	max_line_len(char **map)
 		i++;
 	}
 	return (max);
+}
+
+int	print_error(char *msg, int ret)
+{
+	if (ret == 0)
+		ft_printf("%s", msg);
+	return (1);
+}
+
+int	len_array(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

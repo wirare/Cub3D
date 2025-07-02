@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 17:26:28 by jodougla          #+#    #+#             */
-/*   Updated: 2025/02/06 15:54:44 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:53:26 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <ft_printf.h>
@@ -18,7 +18,7 @@ int	ft_putnbr(int nb)
 	len = 0;
 	if (nb == -2147483648)
 	{
-		write(2, INT_MIN, 11);
+		write(2, INT_MIN_, 11);
 		return (11);
 	}
 	if (nb < 0)

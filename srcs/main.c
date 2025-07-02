@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:28:55 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/01 19:45:38 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:49:58 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -23,6 +23,8 @@ void	set_parsing(t_parsing *parsing)
 
 void	free_parsing(t_parsing parsing)
 {
+	int	i;
+
 	if (parsing.no.path)
 		free(parsing.no.path);
 	if (parsing.so.path)
@@ -35,11 +37,15 @@ void	free_parsing(t_parsing parsing)
 		free(parsing.floor);
 	if (parsing.celling)
 		free(parsing.celling);
+	i = -1;
+	while (parsing.map[++i])
+		free(parsing.map[i]);
 }
 
 int	main(int argc, char **argv)
 {
 	t_parsing	parsing;
+	int			i;
 
 	if (argc != 2)
 	{
@@ -54,7 +60,10 @@ exemple :./Cub3d path_to_the_map\n");
 		parsing.map = parsing.file;
 		if (parse_map(parsing) == 0)
 		{
-			prep_flood_fill(parsing.map);
+			i = -1;
+			while (parsing.map[++i])
+				parsing.map[i] = ft_strtrim(parsing.map[i], "\n");
+			prep_floodfill(parsing.map);
 		}
 	}
 	free_parsing(parsing);

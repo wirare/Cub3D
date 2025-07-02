@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:57:07 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 23:26:38 by joshua           ###   ########.fr       */
+/*   Updated: 2025/07/02 11:57:56 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PARSING_H
@@ -73,13 +73,7 @@ int		parse_texture(char *texture_to_parse, t_parsing *parsing, char *line);
 int		parse_color(t_parsing *parsing, char *line, char type);
 char	*skip_space(char *line);
 int		parse_map(t_parsing parsing);
-int		prep_flood_fill(char **map);
-int		ft_str_arr_len(char **arr);
-void	get_player_pos(char **map, int *player_x, int *player_y);
-bool	validate_map_closed(char **original_map);
-int		array_len(char **str);
-void	init_pad_map(int *i, int *max_len, char **map, char ***copy);
-int		found_longest_line(char **str);
-int	check_map_closed(char **map, int player_x, int player_y);
+int		prep_floodfill(char **map);
+int		max_line_len(char **map);
 
 #endif

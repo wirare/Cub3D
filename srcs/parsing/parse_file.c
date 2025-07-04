@@ -30,8 +30,8 @@ bool	check_component(char *component, char *line)
 
 int	check_element_map(t_parsing *parsing, int i, int j)
 {
-	return (*parsing->file && parsing->file[i][j] != FLOOR
-		&& parsing->file[i][j] != WALL && parsing->file[i][j] != DOOR
+	return (*parsing->file && parsing->file[i][j] != P_FLOOR
+		&& parsing->file[i][j] != P_WALL && parsing->file[i][j] != P_DOOR
 		&& !ft_isspace(parsing->file[i][j]));
 }
 
@@ -49,10 +49,10 @@ int	check_parsing_end(t_parsing *parsing, int i)
 				ft_printf("Unknow type for the map\n");
 				return (1);
 			}
-			if (*parsing->file && (parsing->file[i][j] == FLOOR
-				|| parsing->file[i][j] == WALL || parsing->file[i][j] == NORTH
+			if (*parsing->file && (parsing->file[i][j] == P_FLOOR
+				|| parsing->file[i][j] == P_WALL || parsing->file[i][j] == NORTH
 				|| parsing->file[i][j] == SOUTH || parsing->file[i][j] == WEST
-				|| parsing->file[i][j] == EAST || parsing->file[i][j] == DOOR))
+				|| parsing->file[i][j] == EAST || parsing->file[i][j] == P_DOOR))
 			{
 				parsing->file += i;
 				return (0);

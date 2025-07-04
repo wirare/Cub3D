@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:57:07 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 20:46:33 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:52:09 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PARSING_H
@@ -19,9 +19,9 @@
 # include <mlx.h>
 # include <app.h>
 
-# define WALL '1'
-# define FLOOR '0'
-# define DOOR 'D'
+# define P_WALL '1'
+# define P_FLOOR '0'
+# define P_DOOR 'D'
 
 # define NORTH 'N'
 # define SOUTH 'S'

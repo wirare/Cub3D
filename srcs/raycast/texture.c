@@ -6,13 +6,14 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:22:08 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/01 19:24:25 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:49:11 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
 
 static inline t_img	get_texture(t_cub3d *cub3d, t_wall type, int side)
 {
+	//printf("Side hit : %d\nType : %d\n", side, type);
 	if (type == WALL)
 		return (cub3d->textures[side]);
 	return (cub3d->textures[D]);

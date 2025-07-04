@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 14:42:15 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/03 16:38:16 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:41:04 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "app.h"
@@ -34,5 +34,6 @@ int	open_img(t_app *app, char *path, t_img *dest)
 	}
 	mlx_get_image_region(app->mlx, img, 0, 0, i, i, (mlx_color *)dest->img);
 	mlx_destroy_image(app->mlx, img);
+	printf("Texture from : %s have been open and set to %p with first pixel %d\n", path, dest, dest->img[0]);
 	return (0);
 }

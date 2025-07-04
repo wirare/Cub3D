@@ -119,7 +119,6 @@ void	prep_exec(t_parsing parsing, int tas)
 	app.cub3d->map_height = len_array(parsing.map);
 	app.cub3d->map_width = max_line_len(parsing.map);
 	app.cub3d->update_num = -1;
-	app.cub3d->player.plane = (t_vector){0, 0.85};
 	pad_for_exec(parsing, &app);
 	init_player_timing(app.cub3d);
 	reset_display(&app);

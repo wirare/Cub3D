@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:11:08 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/04 23:26:46 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:54:30 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <SDL2/SDL_scancode.h>
@@ -76,6 +76,7 @@ static int	*parse_inputs(char *line, int num)
 	num = get_first_number(line, &i);
 	input_count = get_input_count(line, i);
 	input_array = malloc((input_count + 2) * sizeof(int));
+	push(input_array);
 	if (!input_array)
 		return (NULL);
 	input_array[0] = num;
@@ -99,6 +100,7 @@ void	convert_tas_file(int fd, int ***tas_inputs, int nb_lines)
 	*tas_inputs = malloc((nb_lines + 1) * sizeof(int *));
 	if (!*tas_inputs)
 		return ;
+	push(*tas_inputs);
 	line_index = 0;
 	line = get_next_line(fd);
 	while (line_index < nb_lines && line)

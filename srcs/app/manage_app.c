@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:45:13 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/01 19:55:13 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:44:39 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
@@ -38,13 +38,6 @@ void	app_destroy(t_app *app)
 	while (i < app->cub3d->map_height)
 		free(app->cub3d->map[i++]);
 	free(app->cub3d->map);
-	if (app->cub3d->tas_inputs != NULL)
-	{
-		i = 0;
-		while (app->cub3d->tas_inputs[i] != NULL)
-			free(app->cub3d->tas_inputs[i++]);
-		free(app->cub3d->tas_inputs);
-	}
 	mlx_clear_window(app->mlx, app->win, (mlx_color){.rgba = 0});
 	mlx_destroy_window(app->mlx, app->win);
 	mlx_destroy_context(app->mlx);

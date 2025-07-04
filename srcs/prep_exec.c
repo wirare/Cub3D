@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:07:03 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/05 01:32:18 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:42:26 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "app.h"
@@ -92,6 +92,7 @@ void	prep_exec(t_parsing parsing, int tas)
 	app.cub3d->map_width = max_line_len(parsing.map);
 	app.cub3d->update_num = -1;
 	pad_for_exec(parsing, &app);
+	free_parsing(parsing);
 	init_player_timing(app.cub3d);
 	reset_display(&app);
 	mlx_mouse_hide(app.mlx);

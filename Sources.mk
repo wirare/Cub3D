@@ -1,4 +1,5 @@
 CUB3D_SOURCES := main.c \
+				 main_utils.c \
 				 app/manage_app.c \
 				 app/hooks.c \
 				 app/mouse.c \
@@ -13,3 +14,11 @@ CUB3D_SOURCES := main.c \
 				 init.c \
 				 input.c \
 				 image.c \
+				 prep_exec.c \
+				 parsing/check_file_name.c \
+ 				 parsing/flood_fill.c \
+				 parsing/parse_color.c \
+				 parsing/parse_file.c \
+				 parsing/parse_map.c \
+				 parsing/parse_texture.c \
+				 parsing/parsing_utils.c \

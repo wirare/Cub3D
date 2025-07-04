@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:25:44 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/01 19:41:32 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/03 18:40:31 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef APP_H
@@ -94,7 +94,6 @@ typedef struct s_timing
 typedef struct s_cub3d
 {
 	uint32_t	pixels[HEIGHT * WIDTH];
-	uint32_t	*empty_grid;
 	uint32_t	sky_color;
 	uint32_t	ground_color;
 	t_player	player;

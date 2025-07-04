@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:28:55 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/05 00:39:42 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:25:11 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <cub3d.h>
@@ -39,14 +39,14 @@ int	check_sprite2(void)
 	fd = open("textures/sablieres.jpg", O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("One of the required sprites don't exist\n");
+		ft_printf("Error\nOne of the required sprites don't exist\n");
 		return (1);
 	}
 	close(fd);
 	fd = open("textures/leviathe.jpg", O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("One of the required sprites don't exist\n");
+		ft_printf("Error\nOne of the required sprites don't exist\n");
 		return (1);
 	}
 	close(fd);
@@ -60,21 +60,21 @@ int	check_sprite(void)
 	fd = open("textures/atrebois.jpg", O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("One of the required sprites don't exist\n");
+		ft_printf("Error\nOne of the required sprites don't exist\n");
 		return (1);
 	}
 	close(fd);
 	fd = open("textures/sombronces.jpg", O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("One of the required sprites don't exist\n");
+		ft_printf("Error\nOne of the required sprites don't exist\n");
 		return (1);
 	}
 	close(fd);
 	fd = open("textures/cravite.jpg", O_RDONLY);
 	if (fd < 0)
 	{
-		ft_printf("One of the required sprites don't exist\n");
+		ft_printf("Error\nOne of the required sprites don't exist\n");
 		return (1);
 	}
 	close(fd);

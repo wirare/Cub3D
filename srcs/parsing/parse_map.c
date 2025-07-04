@@ -6,7 +6,7 @@
 /*   By: joshua <joshua@42angouleme.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 19:30:42 by joshua            #+#    #+#             */
-/*   Updated: 2025/07/02 12:04:13 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:31:51 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -31,7 +31,7 @@ int	check_map_caracter(char **map, char *str)
 			}
 			if (str[x] == '\0' && map[i][j] != '\0')
 			{
-				ft_printf("There is an invalid caracter in the map\n");
+				ft_printf("Error\nThere is an invalid caracter in the map\n");
 				return (1);
 			}
 		}
@@ -59,7 +59,7 @@ int	check_player(char **map)
 	}
 	if (num_player != 1)
 	{
-		ft_printf("Not the correct number of player in the map\n");
+		ft_printf("Error\nNot the correct number of player in the map\n");
 		return (1);
 	}
 	return (0);
@@ -78,7 +78,7 @@ int	check_empty_line(char **map)
 		{
 			if (map[i][j] == '\n' && map[i + 1] && map[i + 1][0] == '\n')
 			{
-				ft_printf("There is an empty line in the map\n");
+				ft_printf("Error\nThere is an empty line in the map\n");
 				return (1);
 			}
 		}
@@ -99,7 +99,7 @@ int	check_separate_map(char **map)
 			j++;
 		if (map[i][j] == '\n' || map[i][j] == '\0')
 		{
-			ft_printf("Invalid map\n");
+			ft_printf("Error\nInvalid map\n");
 			return (1);
 		}
 		i++;

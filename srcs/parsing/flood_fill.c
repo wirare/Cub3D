@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 10:28:29 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/03 11:47:09 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:32:05 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -102,7 +102,7 @@ int	prep_floodfill(char **map)
 	pad = pad_map(map, heigth, width);
 	if (check_closed(pad, heigth, width) == 1)
 	{
-		ft_printf("Map not closed\n");
+		ft_printf("Error\nMap not closed\n");
 		while (pad[++i])
 			free(pad[i]);
 		free(pad);

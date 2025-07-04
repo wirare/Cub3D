@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:05:22 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 23:20:52 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:30:06 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_type.h"
@@ -46,7 +46,7 @@ int	check_parsing_end(t_parsing *parsing, int i)
 		{
 			if (check_element_map(parsing, i, j))
 			{
-				ft_printf("Unknow type for the map\n");
+				ft_printf("Error\nUnknow type for the map\n");
 				return (1);
 			}
 			if (*parsing->file && (parsing->file[i][j] == P_FLOOR

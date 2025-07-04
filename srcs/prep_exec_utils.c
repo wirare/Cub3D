@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:07 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/05 00:53:24 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:22:53 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <cub3d.h>
@@ -126,15 +126,15 @@ void	delete_img(t_app app)
 	if (app.cub3d->textures[D].img)
 		free(app.cub3d->textures[D].img);
 	if (app.cub3d->sprite[0])
-		free(app.cub3d->sprite[0]);
+		mlx_destroy_image(app.mlx, app.cub3d->sprite[0]);
 	if (app.cub3d->sprite[1])
-		free(app.cub3d->sprite[1]);
+		mlx_destroy_image(app.mlx, app.cub3d->sprite[1]);
 	if (app.cub3d->sprite[2])
-		free(app.cub3d->sprite[2]);
+		mlx_destroy_image(app.mlx, app.cub3d->sprite[2]);
 	if (app.cub3d->sprite[3])
-		free(app.cub3d->sprite[3]);
+		mlx_destroy_image(app.mlx, app.cub3d->sprite[3]);
 	if (app.cub3d->sprite[4])
-		free(app.cub3d->sprite[4]);
+		mlx_destroy_image(app.mlx, app.cub3d->sprite[4]);
 	mlx_destroy_window(app.mlx, app.win);
 	mlx_destroy_context(app.mlx);
 }

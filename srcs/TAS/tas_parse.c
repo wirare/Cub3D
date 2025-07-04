@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 23:22:27 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/04 23:54:22 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:29:56 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
@@ -21,7 +21,7 @@ void	check_format(int fd, int *lineno)
 	regex_t	regex;
 
 	if (regcomp(&regex, PATTERN, REG_EXTENDED))
-		return (close(fd), printf("Regex compilation failed\n"), (void)0);
+		return (close(fd), printf("Error\nRegex compil failed\n"), (void)0);
 	invalid = false;
 	*lineno = 1;
 	line = get_next_line(fd);
@@ -29,7 +29,7 @@ void	check_format(int fd, int *lineno)
 	{
 		if (regexec(&regex, line, 0, NULL, 0) != 0)
 		{
-			printf("Line %d: ❌ Invalid format --> \"%s\"\n", *lineno, line);
+			printf("Error\nLine %d: ❌ Invalid --> \"%s\"\n", *lineno, line);
 			invalid = true;
 		}
 		free(line);
@@ -38,10 +38,9 @@ void	check_format(int fd, int *lineno)
 	}
 	close(fd);
 	regfree(&regex);
+	(*lineno)--;
 	if (invalid)
 		*lineno = 0;
-	else
-		(*lineno)--;
 }
 
 int	read_tas_file(int ***tas_inputs)
@@ -51,14 +50,14 @@ int	read_tas_file(int ***tas_inputs)
 
 	fd = open("inputs.tas", O_RDONLY);
 	if (fd == -1)
-		return (printf("File open failed\n"), 1);
+		return (printf("Error\nFile open failed\n"), 1);
 	lineno = 0;
 	check_format(fd, &lineno);
 	fd = open("inputs.tas", O_RDONLY);
 	if (fd == -1)
-		return (printf("File reopen failed\n"), 1);
+		return (printf("Error\nFile reopen failed\n"), 1);
 	if (lineno != 0)
-		convert_tas_file(fd, tas_inputs, lineno - 1);
+		convert_tas_file(fd, tas_inputs, lineno);
 	close(fd);
 	return (lineno == 0);
 }

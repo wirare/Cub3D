@@ -7,6 +7,7 @@ CUB3D_SOURCES := main.c \
 				 vector/vector_scalar.c \
 				 display/display.c \
 				 display/minimap.c \
+				 display/draw_sprite.c \
 				 raycast/raycaster.c \
 				 raycast/texture.c \
 				 raycast/utils.c \

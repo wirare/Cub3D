@@ -39,6 +39,7 @@ static void	__update(void *_app)
 	if (app->cub3d->update_num <= frame_counter(true)
 		&& app->cub3d->update_num != -1)
 		mlx_loop_end(app->mlx);
+	draw_sprite(app);
 	return ;
 }
 

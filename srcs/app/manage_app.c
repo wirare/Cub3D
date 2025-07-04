@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:45:13 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/04 23:44:39 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:05:30 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
@@ -33,7 +33,11 @@ void	app_destroy(t_app *app)
 
 	i = 0;
 	while (i < 5)
-		free(app->cub3d->textures[i++].img);
+	{
+		free(app->cub3d->textures[i].img);
+		mlx_destroy_image(app->mlx, app->cub3d->sprite[i]);
+		i++;
+	}
 	i = 0;
 	while (i < app->cub3d->map_height)
 		free(app->cub3d->map[i++]);

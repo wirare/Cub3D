@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:25:44 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/05 00:47:26 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:05:44 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef APP_H
@@ -153,5 +153,6 @@ void		convert_tas_file(int fd, int ***tas_inputs, int nb_lines);
 suseconds_t	get_ms(void);
 long		frame_counter(bool set);
 void		execute_tas(t_app *app);
+void		draw_sprite(t_app *app);
 
 #endif

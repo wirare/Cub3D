@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 23:22:27 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/05 01:24:41 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:29:56 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
@@ -21,7 +21,7 @@ void	check_format(int fd, int *lineno)
 	regex_t	regex;
 
 	if (regcomp(&regex, PATTERN, REG_EXTENDED))
-		return (close(fd), printf("Error\nRegex compilation failed\n"), (void)0);
+		return (close(fd), printf("Error\nRegex compil failed\n"), (void)0);
 	invalid = false;
 	*lineno = 1;
 	line = get_next_line(fd);
@@ -29,7 +29,7 @@ void	check_format(int fd, int *lineno)
 	{
 		if (regexec(&regex, line, 0, NULL, 0) != 0)
 		{
-			printf("Error\nLine %d: ❌ Invalid format --> \"%s\"\n", *lineno, line);
+			printf("Error\nLine %d: ❌ Invalid --> \"%s\"\n", *lineno, line);
 			invalid = true;
 		}
 		free(line);

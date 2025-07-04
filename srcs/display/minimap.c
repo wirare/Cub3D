@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:14:09 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/01 19:42:23 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:22:22 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
@@ -59,34 +59,41 @@ void	draw_player_dot(uint32_t *pixels)
 	}
 }
 
+static inline void	inner_minimap_calc(t_vector indexs, t_wall **map, t_cub3d *cub3d,
+								t_vector pos)
+{
+	t_vector	map_pos;
+	uint32_t	color;
+	t_vector	screen_pos;
+
+	indexs.x = -MINIMAP_RADIUS;
+	while (indexs.x <= MINIMAP_RADIUS)
+	{
+		map_pos = (t_vector){(int)pos.x + indexs.x, (int)pos.y + indexs.y};
+		color = 0x000000FF;
+		if (map_pos.y >= 0 && map_pos.y < cub3d->map_height
+			&& map_pos.x >= 0 && map_pos.x < cub3d->map_width)
+		{
+			color = 0x888888F;
+			if (map[(int)map_pos.y][(int)map_pos.x] & WALL)
+				color = 0x000000FF;
+		}
+		screen_pos.x = MINIMAP_CENTER + (-indexs.x + MINIMAP_RADIUS) * UNIT;
+		screen_pos.y = MINIMAP_CENTER + (indexs.y + MINIMAP_RADIUS) * UNIT;
+		draw_unit_fast(screen_pos, cub3d->pixels, _mm256_set1_epi32(color));
+		indexs.x++;
+	}
+}
+
 void	calc_minimap(t_cub3d *cub3d, t_wall **map, uint32_t *pixels,
 						t_vector pos)
 {
 	t_vector	indexs;
-	t_vector	map_pos;
-	t_vector	screen_pos;
-	uint32_t	color;
 
 	indexs = (t_vector){-MINIMAP_RADIUS, -MINIMAP_RADIUS};
 	while (indexs.y <= MINIMAP_RADIUS)
 	{
-		indexs.x = -MINIMAP_RADIUS;
-		while (indexs.x <= MINIMAP_RADIUS)
-		{
-			map_pos = (t_vector){(int)pos.x + indexs.x, (int)pos.y + indexs.y};
-			color = 0x000000FF;
-			if (map_pos.y >= 0 && map_pos.y < cub3d->map_height
-				&& map_pos.x >= 0 && map_pos.x < cub3d->map_width)
-			{
-				color = 0x888888F;
-				if (map[(int)map_pos.y][(int)map_pos.x] & WALL)
-					color = 0x000000FF;
-			}
-			screen_pos.x = MINIMAP_CENTER + (-indexs.x + MINIMAP_RADIUS) * UNIT;
-			screen_pos.y = MINIMAP_CENTER + (indexs.y + MINIMAP_RADIUS) * UNIT;
-			draw_unit_fast(screen_pos, pixels, _mm256_set1_epi32(color));
-			indexs.x++;
-		}
+		inner_minimap_calc(indexs, map, cub3d, pos);
 		indexs.y++;
 	}
 	draw_player_dot(pixels);

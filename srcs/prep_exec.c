@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:07:03 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 17:08:04 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:50:12 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "app.h"
@@ -21,6 +21,7 @@ void	transform_map_for_exec(t_app *app, char **pad)
 
 	i = 0;
 	app->cub3d->map = malloc (app->cub3d->map_height * sizeof(t_wall *));
+	printf("WALL : %d\nEMPTY : %d\nDOOR_CLOSE : %d\n", WALL, EMPTY, DOOR_CLOSE);
 	while (pad[i])
 	{
 		j = 0;
@@ -256,7 +257,6 @@ void	prep_exec(t_parsing parsing, int tas)
 	app.cub3d->map_height = len_array(parsing.map);
 	app.cub3d->map_width = max_line_len(parsing.map);
 	app.cub3d->update_num = -1;
-	app.cub3d->player.plane = (t_vector) {0, 0.85};
 	pad_for_exec(parsing, &app);
 	reset_display(&app);
 	init_player_timing(&cub3d);

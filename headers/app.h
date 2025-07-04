@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:25:44 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/03 18:40:31 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:45:01 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef APP_H
@@ -21,8 +21,8 @@
 # include <valgrind/valgrind.h>
 
 # define HEIGHT 1080
-# define HHEIGHT 540
 # define WIDTH 1920
+# define HHEIGHT 540
 # define HWIDTH 960
 # define NAME "Cub3D"
 # define FPS 360
@@ -46,10 +46,10 @@ enum e_dir
 
 typedef enum e_wall
 {
-	EMPTY = 0b00,
-	WALL = 0b01,
-	DOOR_OPEN = 0b10,
-	DOOR_CLOSE = 0b11,
+	EMPTY = 0,
+	WALL = 1,
+	DOOR_OPEN = 2,
+	DOOR_CLOSE = 3,
 }	t_wall;
 
 typedef struct s_img
@@ -107,7 +107,7 @@ typedef struct s_cub3d
 	int			**tas_inputs;
 	long		update_num;
 	bool		end;
-}	__attribute__((aligned(32))) t_cub3d;
+}	t_cub3d;
 
 typedef struct s_app
 {

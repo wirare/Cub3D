@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:18:22 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/01 19:25:02 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:09:49 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
@@ -50,7 +50,7 @@ void	hit_loop(t_raycaster_data *rd, t_wall **map)
 
 	set_step(&rd->step, rd->ray_dir);
 	space_value = &map[(int)rd->map_pos.y][(int)rd->map_pos.x];
-	while (!(*space_value & 1))
+	while (!(*space_value & WALL))
 	{
 		if (rd->side_dist.x < rd->side_dist.y)
 		{

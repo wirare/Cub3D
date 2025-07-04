@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:43:37 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/03 19:07:20 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 20:37:49 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "mlx.h"
@@ -16,7 +16,10 @@
 
 void init_player_timing(t_cub3d *cub3d)
 {
-	cub3d->player.plane = (t_vector){0, 0.85};
+	t_vector	dir;
+
+	dir = cub3d->player.dir;
+	cub3d->player.plane = (t_vector){dir.y * 0.85, -dir.x * 0.85};
 	cub3d->timing = (t_timing){0, get_ms(), 0};
 }
 
@@ -34,7 +37,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (*(unsigned char *) s1 - *(unsigned char *) s2);
 }
-
+/*
 int init_cub3d(t_app *app, char *param)
 {
 	app->cub3d->sky_color = 0x8c835aff;
@@ -98,3 +101,4 @@ int init_cub3d(t_app *app, char *param)
 	app->cub3d->update_num = -1;
 	return (0);
 }
+*/

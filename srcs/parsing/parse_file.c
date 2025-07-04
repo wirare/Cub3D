@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:05:22 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/02 16:54:08 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:52:55 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_type.h"
@@ -30,8 +30,8 @@ bool	check_component(char *component, char *line)
 
 int	check_element_map(t_parsing *parsing, int i, int j)
 {
-	return (*parsing->file && parsing->file[i][j] != FLOOR
-		&& parsing->file[i][j] != WALL && parsing->file[i][j] != DOOR
+	return (*parsing->file && parsing->file[i][j] != P_FLOOR
+		&& parsing->file[i][j] != P_WALL && parsing->file[i][j] != P_DOOR
 		&& !ft_isspace(parsing->file[i][j]));
 }
 
@@ -49,10 +49,10 @@ int	check_parsing_end(t_parsing *parsing, int i)
 				ft_printf("Unknow type for the map\n");
 				return (1);
 			}
-			if (*parsing->file && (parsing->file[i][j] == FLOOR
-				|| parsing->file[i][j] == WALL || parsing->file[i][j] == NORTH
+			if (*parsing->file && (parsing->file[i][j] == P_FLOOR
+				|| parsing->file[i][j] == P_WALL || parsing->file[i][j] == NORTH
 				|| parsing->file[i][j] == SOUTH || parsing->file[i][j] == WEST
-				|| parsing->file[i][j] == EAST || parsing->file[i][j] == DOOR))
+				|| parsing->file[i][j] == EAST || parsing->file[i][j] == P_DOOR))
 			{
 				parsing->file += i;
 				return (0);

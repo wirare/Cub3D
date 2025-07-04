@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:11:08 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/01 21:15:10 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 20:37:12 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <SDL2/SDL_scancode.h>
@@ -38,16 +38,66 @@ int	convert_char_to_input(char c)
 	return (-1);
 }
 
+static int	get_input_count(char *line, int i)
+{
+	int	count;
+
+	count = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\n')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+static int	get_first_number(char *line, int *i)
+{
+	int	num;
+
+	num = 0;
+	while (line[*i] && line[*i] != ',')
+	{
+		if (line[*i] >= '0' && line[*i] <= '9')
+			num = num * 10 + (line[*i] - '0');
+		(*i)++;
+	}
+	if (line[*i] == ',')
+		(*i)++;
+	return (num);
+}
+
+static int	*parse_inputs(char *line, int num)
+{
+	int	i;
+	int	input_count;
+	int	input_index;
+	int	*input_array;
+
+	i = 0;
+	num = get_first_number(line, &i);
+	input_count = get_input_count(line, i);
+	input_array = malloc((input_count + 2) * sizeof(int));
+	if (!input_array)
+		return (NULL);
+	input_array[0] = num;
+	input_index = 1;
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\n')
+			input_array[input_index++] = convert_char_to_input(line[i]);
+		i++;
+	}
+	input_array[input_index] = -1;
+	return (input_array);
+}
+
 void	convert_tas_file(int fd, int ***tas_inputs, int nb_lines)
 {
-	char	*line;
 	int		line_index;
-	int		num;
-	int		input_count;
-	int		i;
-	int		j;
+	char	*line;
 	int		*input_array;
-	int		input_index;
 
 	*tas_inputs = malloc((nb_lines + 1) * sizeof(int *));
 	if (!*tas_inputs)
@@ -56,33 +106,7 @@ void	convert_tas_file(int fd, int ***tas_inputs, int nb_lines)
 	line = get_next_line(fd);
 	while (line_index < nb_lines && line)
 	{
-		i = 0;
-		num = 0;
-		while (line[i] != ',')
-		{
-			if (line[i] - 0x30 <= 9)
-				num = num * 10 + (line[i] - '0');
-			i++;
-		}
-		i++;
-		j = i;
-		input_count = 0;
-		while (line[j])
-		{
-			if (line[j] != ' ' && line[j] != '\n')
-				input_count++;
-			j++;
-		}
-		input_array = malloc((input_count + 2) * sizeof(int));
-		input_array[0] = num;
-		input_index = 1;
-		while (line[i])
-		{
-			if (line[i] != ' ' && line[i] != '\n')
-				input_array[input_index++] = convert_char_to_input(line[i]);
-			i++;
-		}
-		input_array[input_index] = -1;
+		input_array = parse_inputs(line, 0);
 		(*tas_inputs)[line_index++] = input_array;
 		free(line);
 		line = get_next_line(fd);
@@ -90,41 +114,50 @@ void	convert_tas_file(int fd, int ***tas_inputs, int nb_lines)
 	(*tas_inputs)[line_index] = NULL;
 }
 
-int	read_tas_file(int ***tas_inputs)
+void	check_format(int fd, int *lineno)
 {
 	char	*line;
-	int		fd;
-	int		lineno;
 	bool	invalid;
 	regex_t	regex;
 
-	fd = open("inputs.tas", O_RDONLY);
-	if (fd == -1)
-		return (printf("File open failed\n"), 1);
 	if (regcomp(&regex, PATTERN, REG_EXTENDED))
-		return (close(fd), printf("Regex compilation failed\n"), 1);
+		return (close(fd), printf("Regex compilation failed\n"), (void)0);
 	invalid = false;
-	lineno = 1;
+	*lineno = 1;
 	line = get_next_line(fd);
 	while (line)
 	{
 		if (regexec(&regex, line, 0, NULL, 0) != 0)
 		{
-			printf("Line %d: ❌ Invalid format --> \"%s\"\n", lineno, line);
+			printf("Line %d: ❌ Invalid format --> \"%s\"\n", *lineno, line);
 			invalid = true;
 		}
 		free(line);
-		lineno++;
+		(*lineno)++;
 		line = get_next_line(fd);
 	}
 	close(fd);
 	regfree(&regex);
 	if (invalid)
-		return (1);
+		*lineno = 0;
+	(*lineno)--;
+}
+
+int	read_tas_file(int ***tas_inputs)
+{
+	int		fd;
+	int		lineno;
+
+	fd = open("inputs.tas", O_RDONLY);
+	if (fd == -1)
+		return (printf("File open failed\n"), 1);
+	lineno = 0;
+	check_format(fd, &lineno);
 	fd = open("inputs.tas", O_RDONLY);
 	if (fd == -1)
 		return (printf("File reopen failed\n"), 1);
-	convert_tas_file(fd, tas_inputs, lineno - 1);
+	if (lineno != 0)
+		convert_tas_file(fd, tas_inputs, lineno - 1);
 	close(fd);
-	return (0);
+	return (lineno != 0);
 }

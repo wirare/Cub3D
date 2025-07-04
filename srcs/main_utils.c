@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 17:38:20 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 15:19:09 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:39:07 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "mlx.h"
@@ -65,11 +65,11 @@ int	set_texture(t_parsing *parsing, t_app app)
 {
 	if (open_img(&app, parsing->no.path, &app.cub3d->textures[N]))
 		return (1);
-	if (open_img(&app, parsing->no.path, &app.cub3d->textures[S]))
+	if (open_img(&app, parsing->so.path, &app.cub3d->textures[S]))
 		return (1);
-	if (open_img(&app, parsing->no.path, &app.cub3d->textures[W]))
+	if (open_img(&app, parsing->we.path, &app.cub3d->textures[W]))
 		return (1);
-	if (open_img(&app, parsing->no.path, &app.cub3d->textures[E]))
+	if (open_img(&app, parsing->ea.path, &app.cub3d->textures[E]))
 		return (1);
 	if (open_img(&app, "textures/door.png", &app.cub3d->textures[D]))
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:07:03 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 23:30:37 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:51:38 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "app.h"
@@ -63,6 +63,7 @@ int	set_mlx(t_app *app, t_parsing *parsing)
 		|| !app->cub3d->textures[W].img || !app->cub3d->textures[E].img
 		|| !app->cub3d->textures[D].img)
 	{
+		ft_printf("Error while opening the textures\n");
 		delete_img(*app);
 		return (1);
 	}

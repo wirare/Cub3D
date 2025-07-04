@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:08:27 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/05 00:37:12 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 00:51:48 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D_H
@@ -18,7 +18,7 @@
 # include <sys/time.h>
 
 void	prep_exec(t_parsing parsing, int tas);
-int		set_texture(t_parsing *parsing, t_app app);
+int		set_texture(t_parsing *parsing, t_app *app);
 int		check_argc(int argc, char **argv);
 void	free_parsing(t_parsing parsing);
 void	set_parsing(t_parsing *parsing);

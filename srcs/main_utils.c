@@ -6,9 +6,10 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 17:38:20 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/05 00:27:25 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 00:59:58 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "mlx.h"
 #include <cub3d.h>
 
 void	set_parsing(t_parsing *parsing)
@@ -54,27 +55,31 @@ exemple :./Cub3d path_to_the_map\n");
 	return (0);
 }
 
-int	set_texture(t_parsing *parsing, t_app app)
+int	set_texture(t_parsing *parsing, t_app *app)
 {
-	if (open_img(&app, parsing->no.path, &app.cub3d->textures[N]))
+	if (open_img(app, parsing->no.path, &app->cub3d->textures[N]))
 		return (1);
-	if (open_img(&app, parsing->so.path, &app.cub3d->textures[S]))
+	if (open_img(app, parsing->so.path, &app->cub3d->textures[S]))
 		return (1);
-	if (open_img(&app, parsing->we.path, &app.cub3d->textures[W]))
+	if (open_img(app, parsing->we.path, &app->cub3d->textures[W]))
 		return (1);
-	if (open_img(&app, parsing->ea.path, &app.cub3d->textures[E]))
+	if (open_img(app, parsing->ea.path, &app->cub3d->textures[E]))
 		return (1);
-	if (open_img(&app, parsing->dt.path, &app.cub3d->textures[D]))
+	if (open_img(app, parsing->dt.path, &app->cub3d->textures[D]))
 		return (1);
-	if (open_img(&app, "textures/atrebois.jpg", &app.cub3d->sprite[0]))
-		return (1);
-	if (open_img(&app, "textures/sombronces.jpg", &app.cub3d->sprite[1]))
-		return (1);
-	if (open_img(&app, "textures/cravite.jpg", &app.cub3d->sprite[2]))
-		return (1);
-	if (open_img(&app, "textures/sablieres.jpg", &app.cub3d->sprite[3]))
-		return (1);
-	if (open_img(&app, "textures/leviathe.jpg", &app.cub3d->sprite[4]))
+	app->cub3d->sprite[0] = mlx_new_image_from_file(app->mlx,
+			"textures/atrebois.jpg", NULL, NULL);
+	app->cub3d->sprite[1] = mlx_new_image_from_file(app->mlx,
+			"textures/sombronces.jpg", NULL, NULL);
+	app->cub3d->sprite[2] = mlx_new_image_from_file(app->mlx,
+			"textures/cravite.jpg", NULL, NULL);
+	app->cub3d->sprite[3] = mlx_new_image_from_file(app->mlx,
+			"textures/sablieres.jpg", NULL, NULL);
+	app->cub3d->sprite[4] = mlx_new_image_from_file(app->mlx,
+			"textures/leviathe.jpg", NULL, NULL);
+	if (!app->cub3d->sprite[0] || !app->cub3d->sprite[1]
+		|| !app->cub3d->sprite[2] || !app->cub3d->sprite[3]
+		|| !app->cub3d->sprite[4])
 		return (1);
 	return (0);
 }

@@ -4,8 +4,8 @@ NO textures/patsek.jpg
 SO textures/wd40.jpg
 DT textures/door2.jpg
 
-F 124, 40, 220
-C 255, 80, 110
+F 0, 0, 10
+C 0, 0, 0
 
 111111111111111111111
 1N0000000011100000001

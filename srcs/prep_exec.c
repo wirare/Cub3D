@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:07:03 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/05 00:24:34 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 00:51:33 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "app.h"
@@ -46,9 +46,9 @@ int	check_texture(t_app *app)
 {
 	return (!app->cub3d->textures[N].img || !app->cub3d->textures[S].img
 		|| !app->cub3d->textures[W].img || !app->cub3d->textures[E].img
-		|| !app->cub3d->textures[D].img || !app->cub3d->sprite[0].img
-		|| !app->cub3d->sprite[1].img || !app->cub3d->sprite[2].img
-		|| !app->cub3d->sprite[3].img || !app->cub3d->sprite[4].img);
+		|| !app->cub3d->textures[D].img || !app->cub3d->sprite[0]
+		|| !app->cub3d->sprite[1] || !app->cub3d->sprite[2]
+		|| !app->cub3d->sprite[3] || !app->cub3d->sprite[4]);
 }
 
 int	set_mlx(t_app *app, t_parsing *parsing)
@@ -67,7 +67,7 @@ int	set_mlx(t_app *app, t_parsing *parsing)
 	app->win = mlx_new_window(app->mlx, &info);
 	if (window_error(*app))
 		return (1);
-	set_texture(parsing, *app);
+	set_texture(parsing, app);
 	if (check_texture(app))
 	{
 		ft_printf("Error while opening the textures\n");

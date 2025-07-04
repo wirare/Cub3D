@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 09:57:07 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/02 17:40:55 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:46:07 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PARSING_H
@@ -47,7 +47,6 @@ typedef struct s_texture
 	char		*path;
 	int			width;
 	int			heigth;
-	mlx_image	img;
 	mlx_color	*color;
 }	t_texture;
 
@@ -75,9 +74,5 @@ int		prep_floodfill(char **map);
 int		max_line_len(char **map);
 int		print_error(char *msg, int ret);
 int		len_array(char **str);
-void	set_texture(t_parsing *parsing, t_app app);
-void	check_argc(int argc);
-void	free_parsing(t_parsing parsing);
-void	set_parsing(t_parsing *parsing);
 
 #endif

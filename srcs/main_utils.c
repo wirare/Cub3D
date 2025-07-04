@@ -6,10 +6,12 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 17:38:20 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/02 17:40:27 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:19:09 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "mlx.h"
 #include <parsing.h>
+#include <sys/time.h>
 
 void	set_parsing(t_parsing *parsing)
 {
@@ -24,7 +26,7 @@ void	set_parsing(t_parsing *parsing)
 
 void	free_parsing(t_parsing parsing)
 {
-	int	i;
+//	int	i;
 
 	if (parsing.no.path)
 		free(parsing.no.path);
@@ -38,32 +40,46 @@ void	free_parsing(t_parsing parsing)
 		free(parsing.floor);
 	if (parsing.celling)
 		free(parsing.celling);
-	i = -1;
-	if (parsing.map != NULL)
-	{
-		while (parsing.map[++i])
-			free(parsing.map[i]);
-	}
+//	if (parsing.map != NULL)
+//	{
+//		i = 0;
+//		while (parsing.map[i])
+//			free(parsing.map[i++]);
+//	}
 }
 
-void	check_argc(int argc)
+int	check_argc(int argc, char **argv)
 {
 	if (argc != 2)
 	{
+		if (argc == 3 && !ft_strncmp(argv[2], "--tas", 6))
+			return (1);
 		ft_printf("Error :Not the right number of argument, put two argument, \
 exemple :./Cub3d path_to_the_map\n");
 		exit (1);
 	}
+	return (0);
 }
 
-void	set_texture(t_parsing *parsing, t_app app)
+int	set_texture(t_parsing *parsing, t_app app)
 {
-	parsing->ea.img = mlx_new_image_from_file(app.mlx,
-			parsing->ea.path, &parsing->ea.width, &parsing->ea.heigth);
-	parsing->we.img = mlx_new_image_from_file(app.mlx,
-			parsing->we.path, &parsing->we.width, &parsing->we.heigth);
-	parsing->no.img = mlx_new_image_from_file(app.mlx,
-			parsing->no.path, &parsing->no.width, &parsing->no.heigth);
-	parsing->so.img = mlx_new_image_from_file(app.mlx,
-			parsing->so.path, &parsing->so.width, &parsing->so.heigth);
+	if (open_img(&app, parsing->no.path, &app.cub3d->textures[N]))
+		return (1);
+	if (open_img(&app, parsing->no.path, &app.cub3d->textures[S]))
+		return (1);
+	if (open_img(&app, parsing->no.path, &app.cub3d->textures[W]))
+		return (1);
+	if (open_img(&app, parsing->no.path, &app.cub3d->textures[E]))
+		return (1);
+	if (open_img(&app, "textures/door.png", &app.cub3d->textures[D]))
+		return (1);
+	return (0);
+}
+
+suseconds_t	get_ms(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }

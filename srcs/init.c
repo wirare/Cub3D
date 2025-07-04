@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:43:37 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/06/30 18:48:23 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/03 19:07:20 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "mlx.h"
@@ -16,8 +16,6 @@
 
 void init_player_timing(t_cub3d *cub3d)
 {
-	cub3d->player.pos = (t_vector){22, 12};
-	cub3d->player.dir = (t_vector){-1, 0};
 	cub3d->player.plane = (t_vector){0, 0.85};
 	cub3d->timing = (t_timing){0, get_ms(), 0};
 }

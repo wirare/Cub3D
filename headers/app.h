@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:25:44 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/04 21:45:01 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:32:56 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef APP_H
@@ -33,14 +33,15 @@
 #  define MOVE_SPEED 3
 #  define ROT_SPEED 1
 # endif
-# define MOUSE_ROT_SPEED 3
+# define MOUSE_ROT_SPEED 0.1
+# define PATTERN "^[0-9]+, [A-Z]+\n$"
 
 enum e_dir
 {
-	N,
-	E,
-	S,
 	W,
+	E,
+	N,
+	S,
 	D
 };
 
@@ -136,15 +137,20 @@ void		mouse_movement(t_app *app);
 void		movement(t_cub3d *cub3d);
 void		rotation(t_cub3d *cub3d);
 void		door(t_cub3d *cub3d);
-void		calc_minimap(t_cub3d *cub3d, t_wall **map, uint32_t *pixels, t_vector pos);
+void		calc_minimap(t_cub3d *cub3d, t_wall **map,
+				uint32_t *pixels, t_vector pos);
 int			open_img(t_app *app, char *path, t_img *dest);
 void		update_timing(t_timing *timing);
 void		set_delta(t_vector *deltaDist, t_vector rayDir);
 void		set_step(t_vector *step, t_vector rayDir);
 void		set_ray_dist(t_raycaster_data *rd, t_player *player);
 void		hit_loop(t_raycaster_data *rd, t_wall **map);
-void		apply_texture(t_cub3d *cub3d, t_raycaster_data rd, t_vector draw_pos, int x);
+void		apply_texture(t_cub3d *cub3d, t_raycaster_data rd,
+				t_vector draw_pos, int x);
 int			read_tas_file(int ***tas_inputs);
+void		convert_tas_file(int fd, int ***tas_inputs, int nb_lines);
 suseconds_t	get_ms(void);
+long		frame_counter(bool set);
+void		execute_tas(t_app *app);
 
 #endif

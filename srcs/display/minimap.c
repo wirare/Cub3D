@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 17:14:09 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/04 21:22:22 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:20:11 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
@@ -43,7 +43,6 @@ void	draw_player_dot(uint32_t *pixels)
 
 	center_x = 59;
 	center_y = 59;
-	//center_y = MINIMAP_CENTER + MINIMAP_RADIUS * UNIT + (UNIT - PLAYER_DOT_SIZE) / 2;
 	it = (t_vector){0, 0};
 	while (it.y < PLAYER_DOT_SIZE)
 	{
@@ -59,8 +58,8 @@ void	draw_player_dot(uint32_t *pixels)
 	}
 }
 
-static inline void	inner_minimap_calc(t_vector indexs, t_wall **map, t_cub3d *cub3d,
-								t_vector pos)
+static inline void	inner_minimap_calc(t_vector indexs, t_wall **map,
+										t_cub3d *cub3d, t_vector pos)
 {
 	t_vector	map_pos;
 	uint32_t	color;

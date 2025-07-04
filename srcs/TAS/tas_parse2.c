@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tas.c                                              :+:      :+:    :+:   */
+/*   tas_parse2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 14:11:08 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/04 20:37:12 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:26:46 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <SDL2/SDL_scancode.h>
 #include <app.h>
-#include <stdio.h>
 #include <regex.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "../lib/libft/headers/gnl.h"
-
-#define PATTERN "^[0-9]+, [A-Z]+\n$"
+#include <libft.h>
 
 int	convert_char_to_input(char c)
 {
@@ -112,52 +109,4 @@ void	convert_tas_file(int fd, int ***tas_inputs, int nb_lines)
 		line = get_next_line(fd);
 	}
 	(*tas_inputs)[line_index] = NULL;
-}
-
-void	check_format(int fd, int *lineno)
-{
-	char	*line;
-	bool	invalid;
-	regex_t	regex;
-
-	if (regcomp(&regex, PATTERN, REG_EXTENDED))
-		return (close(fd), printf("Regex compilation failed\n"), (void)0);
-	invalid = false;
-	*lineno = 1;
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (regexec(&regex, line, 0, NULL, 0) != 0)
-		{
-			printf("Line %d: ❌ Invalid format --> \"%s\"\n", *lineno, line);
-			invalid = true;
-		}
-		free(line);
-		(*lineno)++;
-		line = get_next_line(fd);
-	}
-	close(fd);
-	regfree(&regex);
-	if (invalid)
-		*lineno = 0;
-	(*lineno)--;
-}
-
-int	read_tas_file(int ***tas_inputs)
-{
-	int		fd;
-	int		lineno;
-
-	fd = open("inputs.tas", O_RDONLY);
-	if (fd == -1)
-		return (printf("File open failed\n"), 1);
-	lineno = 0;
-	check_format(fd, &lineno);
-	fd = open("inputs.tas", O_RDONLY);
-	if (fd == -1)
-		return (printf("File reopen failed\n"), 1);
-	if (lineno != 0)
-		convert_tas_file(fd, tas_inputs, lineno - 1);
-	close(fd);
-	return (lineno != 0);
 }

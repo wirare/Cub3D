@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:29:55 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 20:36:50 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:07:49 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <cub3d.h>
@@ -35,4 +35,13 @@ int	check_tas(t_app *app, int tas)
 		}
 	}
 	return (0);
+}
+
+void	init_player_timing(t_cub3d *cub3d)
+{
+	t_vector	dir;
+
+	dir = cub3d->player.dir;
+	cub3d->player.plane = (t_vector){dir.y * 0.85, -dir.x * 0.85};
+	cub3d->timing = (t_timing){0, get_ms(), 0};
 }

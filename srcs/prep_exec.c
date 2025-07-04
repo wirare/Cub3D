@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:07:03 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 22:50:34 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:30:37 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "app.h"
@@ -14,7 +14,7 @@
 #include "mlx.h"
 #include <cub3d.h>
 
-static inline long	frame_counter(bool set)
+inline long	frame_counter(bool set)
 {
 	static long	fc = 0;
 
@@ -28,56 +28,18 @@ static void	__update(void *_app)
 	t_app	*app;
 
 	app = (t_app *)_app;
-	reset_display(app);
-	raycaster(app->cub3d);
-	mlx_pixel_put_array(app->mlx, app->win, 0, 0,
-		(mlx_color *)app->cub3d->pixels, HEIGHT * WIDTH);
 	mouse_movement(app);
 	movement(app->cub3d);
 	rotation(app->cub3d);
 	door(app->cub3d);
+	reset_display(app);
+	raycaster(app->cub3d);
+	mlx_pixel_put_array(app->mlx, app->win, 0, 0,
+		(mlx_color *)app->cub3d->pixels, HEIGHT * WIDTH);
 	if (app->cub3d->update_num <= frame_counter(true)
 		&& app->cub3d->update_num != -1)
 		mlx_loop_end(app->mlx);
 	return ;
-}
-
-static void	execute_tas(t_app *app)
-{
-	int		*frame_inputs;
-	bool	*inputs;
-	int		current;
-	int		frame_count;
-	int		**tas_inputs_copy;
-
-	inputs = app->cub3d->inputs;
-	if (!app->cub3d->tas_inputs)
-		return ;
-	tas_inputs_copy = app->cub3d->tas_inputs;
-	frame_inputs = *tas_inputs_copy;
-	while (frame_inputs != NULL)
-	{
-		if (app->cub3d->end)
-			return ;
-		frame_count = *frame_inputs;
-		frame_inputs++;
-		current = *frame_inputs;
-		memset(inputs, 0, sizeof(bool) * SDL_NUM_SCANCODES);
-		while (current != -1)
-		{
-			inputs[current] = true;
-			frame_inputs++;
-			current = *frame_inputs;
-		}
-		tas_inputs_copy++;
-		frame_inputs = *tas_inputs_copy;
-		app->cub3d->update_num = frame_counter(false) + frame_count;
-		mlx_loop(app->mlx);
-	}
-	memset(inputs, 0, sizeof(bool) * SDL_NUM_SCANCODES);
-	app->cub3d->update_num = -1;
-	app->cub3d->tas = 0;
-	mlx_loop(app->mlx);
 }
 
 int	set_mlx(t_app *app, t_parsing *parsing)

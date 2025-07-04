@@ -6,14 +6,13 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 16:22:08 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/04 21:49:11 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 22:55:35 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
 
 static inline t_img	get_texture(t_cub3d *cub3d, t_wall type, int side)
 {
-	//printf("Side hit : %d\nType : %d\n", side, type);
 	if (type == WALL)
 		return (cub3d->textures[side]);
 	return (cub3d->textures[D]);
@@ -31,10 +30,10 @@ static inline int	calc_tex_x(t_img texture, t_raycaster_data *rd,
 		wall_x = cub3d->player.pos.x + rd->perp_wall_dist * rd->ray_dir.x;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * texture.size);
-	if ((rd->side == N && rd->ray_dir.x > 0)
+	if ((rd->side == N && rd->ray_dir.y < 0)
 		|| (rd->side == E && rd->ray_dir.x > 0)
 		|| (rd->side == S && rd->ray_dir.y < 0)
-		|| (rd->side == W && rd->ray_dir.y < 0))
+		|| (rd->side == W && rd->ray_dir.x > 0))
 		tex_x = texture.size - tex_x - 1;
 	return (tex_x);
 }

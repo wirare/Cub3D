@@ -10,10 +10,12 @@ CUB3D_SOURCES := main.c \
 				 raycast/raycaster.c \
 				 raycast/texture.c \
 				 raycast/utils.c \
-				 TAS/tas.c \
-				 init.c \
+				 TAS/tas_parse.c \
+				 TAS/tas_parse2.c \
+				 TAS/run_tas.c \
 				 input.c \
 				 image.c \
+				 move.c \
 				 prep_exec.c \
 				 prep_exec_utils.c \
 				 prep_exec_utils2.c \

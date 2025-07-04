@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:05:22 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 21:21:00 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:20:52 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_type.h"
@@ -52,7 +52,8 @@ int	check_parsing_end(t_parsing *parsing, int i)
 			if (*parsing->file && (parsing->file[i][j] == P_FLOOR
 				|| parsing->file[i][j] == P_WALL || parsing->file[i][j] == NORTH
 				|| parsing->file[i][j] == SOUTH || parsing->file[i][j] == WEST
-				|| parsing->file[i][j] == EAST || parsing->file[i][j] == P_DOOR))
+				|| parsing->file[i][j] == EAST
+				|| parsing->file[i][j] == P_DOOR))
 			{
 				parsing->file += i;
 				return (0);

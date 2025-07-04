@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 14:42:15 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/04 21:41:04 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:01:17 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "app.h"
@@ -22,7 +22,8 @@ int	open_img(t_app *app, char *path, t_img *dest)
 	if (i != j)
 	{
 		mlx_destroy_image(app->mlx, img);
-		return (1); //is not square
+		printf("Image is not a square\n");
+		return (1);
 	}
 	dest->size = i;
 	dest->img = malloc(i * i * sizeof(uint32_t));
@@ -30,10 +31,9 @@ int	open_img(t_app *app, char *path, t_img *dest)
 	{
 		if (img)
 			mlx_destroy_image(app->mlx, img);
-		return (2); //alloc/open fail
+		return (2);
 	}
 	mlx_get_image_region(app->mlx, img, 0, 0, i, i, (mlx_color *)dest->img);
 	mlx_destroy_image(app->mlx, img);
-	printf("Texture from : %s have been open and set to %p with first pixel %d\n", path, dest, dest->img[0]);
 	return (0);
 }

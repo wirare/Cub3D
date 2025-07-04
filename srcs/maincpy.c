@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:28:55 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/03 17:21:36 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 17:31:39 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "mlx.h"
@@ -25,13 +25,13 @@ static inline long	frame_counter(bool set)
 	return (fc);
 }
 
-suseconds_t	get_ms(void)
+/*suseconds_t	get_ms(void)
 {
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-}
+}*/
 
 static void	__update(void *_app)
 {

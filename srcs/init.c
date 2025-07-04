@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:43:37 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/03 19:07:20 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:53:32 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "mlx.h"
@@ -16,7 +16,10 @@
 
 void init_player_timing(t_cub3d *cub3d)
 {
-	cub3d->player.plane = (t_vector){0, 0.85};
+	t_vector	dir;
+
+	dir = cub3d->player.dir;
+	cub3d->player.plane = (t_vector){dir.y * 0.85, -dir.x * 0.85};
 	cub3d->timing = (t_timing){0, get_ms(), 0};
 }
 
@@ -77,14 +80,16 @@ int init_cub3d(t_app *app, char *param)
 		memcpy(app->cub3d->map[i], worldMap[i], sizeof(int) * app->cub3d->map_width);
 	}
 	init_player_timing(app->cub3d);
+	app->cub3d->player.pos.x = 1;
+	app->cub3d->player.pos.y = 1;
 	mlx_mouse_hide(app->mlx);
 	memset(app->cub3d->inputs, false, sizeof(bool));
 	t_img *textures = app->cub3d->textures;
-	if (open_img(app, "wd40.jpg", &textures[N]),
-		open_img(app, "patsek.jpg", &textures[E]),
-		open_img(app, "merguez.jpg", &textures[S]),
-		open_img(app, "kiwi.jpg", &textures[W]),
-		open_img(app, "door2.jpg", &textures[D]))
+	if (open_img(app, "textures/north.png", &textures[N]),
+		open_img(app, "textures/east.png", &textures[E]),
+		open_img(app, "textures/south.png", &textures[S]),
+		open_img(app, "textures/west.png", &textures[W]),
+		open_img(app, "textures/door.png", &textures[D]))
 		return (1);//TODO:error if img isnt square or cant open img
 	app->cub3d->tas = false;
 	app->cub3d->tas_inputs = NULL;

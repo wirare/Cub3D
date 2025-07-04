@@ -6,12 +6,10 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 17:38:20 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 15:19:09 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 20:59:36 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "mlx.h"
-#include <parsing.h>
-#include <sys/time.h>
+#include <cub3d.h>
 
 void	set_parsing(t_parsing *parsing)
 {
@@ -19,6 +17,7 @@ void	set_parsing(t_parsing *parsing)
 	parsing->so.path = NULL;
 	parsing->ea.path = NULL;
 	parsing->we.path = NULL;
+	parsing->dt.path = NULL;
 	parsing->floor = NULL;
 	parsing->celling = NULL;
 	parsing->map = NULL;
@@ -26,8 +25,6 @@ void	set_parsing(t_parsing *parsing)
 
 void	free_parsing(t_parsing parsing)
 {
-//	int	i;
-
 	if (parsing.no.path)
 		free(parsing.no.path);
 	if (parsing.so.path)
@@ -36,16 +33,12 @@ void	free_parsing(t_parsing parsing)
 		free(parsing.ea.path);
 	if (parsing.we.path)
 		free(parsing.we.path);
+	if (parsing.dt.path)
+		free(parsing.dt.path);
 	if (parsing.floor)
 		free(parsing.floor);
 	if (parsing.celling)
 		free(parsing.celling);
-//	if (parsing.map != NULL)
-//	{
-//		i = 0;
-//		while (parsing.map[i])
-//			free(parsing.map[i++]);
-//	}
 }
 
 int	check_argc(int argc, char **argv)
@@ -65,13 +58,13 @@ int	set_texture(t_parsing *parsing, t_app app)
 {
 	if (open_img(&app, parsing->no.path, &app.cub3d->textures[N]))
 		return (1);
-	if (open_img(&app, parsing->no.path, &app.cub3d->textures[S]))
+	if (open_img(&app, parsing->so.path, &app.cub3d->textures[S]))
 		return (1);
-	if (open_img(&app, parsing->no.path, &app.cub3d->textures[W]))
+	if (open_img(&app, parsing->we.path, &app.cub3d->textures[W]))
 		return (1);
-	if (open_img(&app, parsing->no.path, &app.cub3d->textures[E]))
+	if (open_img(&app, parsing->ea.path, &app.cub3d->textures[E]))
 		return (1);
-	if (open_img(&app, "textures/door.png", &app.cub3d->textures[D]))
+	if (open_img(&app, parsing->dt.path, &app.cub3d->textures[D]))
 		return (1);
 	return (0);
 }

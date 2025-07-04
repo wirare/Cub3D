@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:05:22 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/02 16:54:08 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 21:21:00 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_type.h"
@@ -73,7 +73,9 @@ int	check_type(t_parsing *parsing, int *ret, int i, int j)
 		*ret = parse_texture("EA", parsing, parsing->file[i] + j + 2);
 	else if (check_component(WEST_TEXTURE, parsing->file[i] + j))
 		*ret = parse_texture("WE", parsing, parsing->file[i] + j + 2);
-	else if (check_component(FLOOR_COLOR, parsing->file[i] + -j))
+	else if (check_component(DOOR_, parsing->file[i] + j))
+		*ret = parse_texture("DT", parsing, parsing->file[i] + j + 2);
+	else if (check_component(FLOOR_COLOR, parsing->file[i] + j))
 		*ret = parse_color(parsing, parsing->file[i] + j + 1, 'F');
 	else if (check_component(CELLING_COLOR, parsing->file[i] + j))
 		*ret = parse_color(parsing, parsing->file[i] + j + 1, 'C');

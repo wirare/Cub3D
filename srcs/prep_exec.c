@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:07:03 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/05 00:51:33 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:32:18 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "app.h"
@@ -70,7 +70,7 @@ int	set_mlx(t_app *app, t_parsing *parsing)
 	set_texture(parsing, app);
 	if (check_texture(app))
 	{
-		ft_printf("Error while opening the textures\n");
+		ft_printf("Error\nWhile opening the textures\n");
 		delete_img(*app);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:33:16 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 20:55:10 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:26:36 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -29,7 +29,7 @@ int	select_texture(char *texture_to_parse, char *line, t_parsing *parsing)
 		parsing->dt.path = ft_strdup(line);
 	else
 	{
-		ft_printf("This texture is set multiple \
+		ft_printf("Error\nThis texture is set multiple \
 times : %s\n", texture_to_parse);
 		return (1);
 	}
@@ -49,7 +49,7 @@ int	parse_texture(char *texture_to_parse, t_parsing *parsing, char *line)
 	fd = open(line_to_open, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("can't open this file :%s\n", line_to_open);
+		ft_printf("Error\ncan't open this file :%s\n", line_to_open);
 		parsing->error = 1;
 		free(line_to_open);
 		return (1);

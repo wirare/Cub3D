@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 17:38:20 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/05 00:59:58 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:25:21 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "mlx.h"
@@ -48,7 +48,7 @@ int	check_argc(int argc, char **argv)
 	{
 		if (argc == 3 && !ft_strncmp(argv[2], "--tas", 6))
 			return (1);
-		ft_printf("Error :Not the right number of argument, put two argument, \
+		ft_printf("Error\nNot the right number of argument, put two argument, \
 exemple :./Cub3d path_to_the_map\n");
 		exit (1);
 	}

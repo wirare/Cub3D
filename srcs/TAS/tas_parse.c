@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 23:22:27 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/04 23:54:22 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:12:49 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <app.h>
@@ -38,10 +38,9 @@ void	check_format(int fd, int *lineno)
 	}
 	close(fd);
 	regfree(&regex);
+	(*lineno)--;
 	if (invalid)
 		*lineno = 0;
-	else
-		(*lineno)--;
 }
 
 int	read_tas_file(int ***tas_inputs)
@@ -58,7 +57,7 @@ int	read_tas_file(int ***tas_inputs)
 	if (fd == -1)
 		return (printf("File reopen failed\n"), 1);
 	if (lineno != 0)
-		convert_tas_file(fd, tas_inputs, lineno - 1);
+		convert_tas_file(fd, tas_inputs, lineno);
 	close(fd);
 	return (lineno == 0);
 }

@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:07:03 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/05 00:51:33 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 01:07:04 by ellanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "app.h"
@@ -39,6 +39,7 @@ static void	__update(void *_app)
 	if (app->cub3d->update_num <= frame_counter(true)
 		&& app->cub3d->update_num != -1)
 		mlx_loop_end(app->mlx);
+	draw_sprite(app);
 	return ;
 }
 

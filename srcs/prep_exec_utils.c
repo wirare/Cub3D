@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:20:07 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 20:23:55 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:51:41 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <cub3d.h>
@@ -115,7 +115,6 @@ void	get_player_pos(char **map, t_vector *pos, t_vector *dir)
 
 void	delete_img(t_app app)
 {
-	ft_printf("Error while opening the textures\n");
 	if (app.cub3d->textures[N].img)
 		free(app.cub3d->textures[N].img);
 	if (app.cub3d->textures[S].img)

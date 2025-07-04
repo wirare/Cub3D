@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:29:55 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 23:07:49 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/04 23:50:34 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <cub3d.h>
@@ -30,6 +30,7 @@ int	check_tas(t_app *app, int tas)
 		app->cub3d->tas = true;
 		if (read_tas_file(&app->cub3d->tas_inputs))
 		{
+			ft_printf("Error while reading the tas file\n");
 			delete_img(*app);
 			return (1);
 		}

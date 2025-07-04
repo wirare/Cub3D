@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 18:49:30 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 18:56:17 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 00:36:59 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "mlx.h"
@@ -31,4 +31,11 @@ int	window_error(t_app app)
 		return (1);
 	}
 	return (0);
+}
+
+void	error_file(t_parsing parsing)
+{
+	ft_printf("Missing component in the map\n");
+	free_parsing(parsing);
+	exit (1);
 }

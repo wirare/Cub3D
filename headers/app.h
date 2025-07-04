@@ -6,7 +6,7 @@
 /*   By: ellanglo <ellanglo@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:25:44 by ellanglo          #+#    #+#             */
-/*   Updated: 2025/07/04 23:32:56 by ellanglo         ###   ########.fr       */
+/*   Updated: 2025/07/05 00:20:59 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef APP_H
@@ -103,6 +103,7 @@ typedef struct s_cub3d
 	int			map_height;
 	t_wall		**map;
 	t_img		textures[5];
+	t_img		sprite[5];
 	bool		inputs[SDL_NUM_SCANCODES];
 	bool		tas;
 	int			**tas_inputs;

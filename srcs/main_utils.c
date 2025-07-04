@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 17:38:20 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 20:59:36 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/05 00:27:25 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <cub3d.h>
@@ -65,6 +65,16 @@ int	set_texture(t_parsing *parsing, t_app app)
 	if (open_img(&app, parsing->ea.path, &app.cub3d->textures[E]))
 		return (1);
 	if (open_img(&app, parsing->dt.path, &app.cub3d->textures[D]))
+		return (1);
+	if (open_img(&app, "textures/atrebois.jpg", &app.cub3d->sprite[0]))
+		return (1);
+	if (open_img(&app, "textures/sombronces.jpg", &app.cub3d->sprite[1]))
+		return (1);
+	if (open_img(&app, "textures/cravite.jpg", &app.cub3d->sprite[2]))
+		return (1);
+	if (open_img(&app, "textures/sablieres.jpg", &app.cub3d->sprite[3]))
+		return (1);
+	if (open_img(&app, "textures/leviathe.jpg", &app.cub3d->sprite[4]))
 		return (1);
 	return (0);
 }

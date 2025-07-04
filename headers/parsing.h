@@ -32,6 +32,7 @@
 # define SOUTH_TEXTURE "SO"
 # define WEST_TEXTURE "WE"
 # define EAST_TEXTURE "EA"
+# define DOOR_ "DT"
 # define FLOOR_COLOR "F"
 # define CELLING_COLOR "C"
 
@@ -58,6 +59,7 @@ typedef struct s_parsing
 	t_texture	so;
 	t_texture	ea;
 	t_texture	we;
+	t_texture	dt;
 	t_color		*celling;
 	t_color		*floor;
 	char		**map;

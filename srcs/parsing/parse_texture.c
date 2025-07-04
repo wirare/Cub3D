@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:33:16 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/01 14:16:10 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 20:55:10 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <parsing.h>
@@ -24,6 +24,9 @@ int	select_texture(char *texture_to_parse, char *line, t_parsing *parsing)
 	else if (ft_strncmp(texture_to_parse, "WE", 3) == 0
 		&& parsing->we.path == NULL)
 		parsing->we.path = ft_strdup(line);
+	else if (ft_strncmp(texture_to_parse, "DT", 3) == 0
+		&& parsing->dt.path == NULL)
+		parsing->dt.path = ft_strdup(line);
 	else
 	{
 		ft_printf("This texture is set multiple \

@@ -15,6 +15,9 @@ CUB3D_SOURCES := main.c \
 				 input.c \
 				 image.c \
 				 prep_exec.c \
+				 prep_exec_utils.c \
+				 prep_exec_utils2.c \
+				 exec_error.c \
 				 parsing/check_file_name.c \
  				 parsing/flood_fill.c \
 				 parsing/parse_color.c \

@@ -6,7 +6,7 @@
 /*   By: jodougla <jodougla@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 15:07:03 by jodougla          #+#    #+#             */
-/*   Updated: 2025/07/04 20:56:49 by jodougla         ###   ########.fr       */
+/*   Updated: 2025/07/04 22:50:34 by jodougla         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "app.h"
@@ -98,7 +98,8 @@ int	set_mlx(t_app *app, t_parsing *parsing)
 		return (1);
 	set_texture(parsing, *app);
 	if (!app->cub3d->textures[N].img || !app->cub3d->textures[S].img
-		|| !app->cub3d->textures[W].img || !app->cub3d->textures[E].img)
+		|| !app->cub3d->textures[W].img || !app->cub3d->textures[E].img
+		|| !app->cub3d->textures[D].img)
 	{
 		delete_img(*app);
 		return (1);
